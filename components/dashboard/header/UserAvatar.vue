@@ -1,7 +1,6 @@
 <template>
     <div class="w-[40px] h-[40px]">
-        <img class="w-full h-full rounded-full" src="@/assets/images/michelin-default-profile-image.png" alt="" />
-        <Icon name="streamline:interface-setting-menu-1-button-parallel-horizontal-lines-menu-navigation-three-hamburger" />
+        <img class="w-full h-full rounded-full border border-primaryColor1" src="@/assets/images/michelin-default-profile-image.png" alt="" />
     </div>
 </template>
 

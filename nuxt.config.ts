@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
-    modules: ['nuxt-svgo', 'nuxt-icons'],
+    modules: ['nuxt-svgo', 'nuxt-icons', 'nuxt-icon'],
     svgo: {
         defaultImport: 'component',
     },
@@ -17,5 +17,13 @@ export default defineNuxtConfig({
         public: {
             apiBase: '/api',
         },
+    },
+    icon: {
+        customCollections: [
+            {
+                prefix: 'my-icon',
+                dir: './assets/icons',
+            },
+        ],
     },
 });
