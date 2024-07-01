@@ -2,7 +2,19 @@
 export default {
     content: ['./components/**/*.{js,vue,ts}', './layouts/**/*.vue', './pages/**/*.vue', './plugins/**/*.{js,ts}', './app.vue', './error.vue'],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                primaryColor: '#333333',
+                primaryColor2: '#ffffff',
+                primaryColor3: 'rgb(77, 77, 77)',
+                primaryColor4: 'rgb(78, 78, 78)',
+                primaryWhite: '#fff',
+                primaryOrange: 'rgb(189, 35, 51)',
+            },
+            spacing: {
+                spaceTopNav: '64px',
+            },
+        },
     },
     plugins: [],
 };
