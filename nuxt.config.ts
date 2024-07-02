@@ -13,9 +13,9 @@ export default defineNuxtConfig({
         },
     },
     runtimeConfig: {
-        apiSecret: '123',
+        // apiSecret: '123',
         public: {
-            apiBase: '/api',
+            apiBase: '',
         },
     },
     icon: {

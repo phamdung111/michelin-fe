@@ -1,8 +1,8 @@
 <template>
     <div class="px-[25px] text-[18px] font-normal text-primaryColor5">
         <div class="flex py-5">
-            <div class="pr-4 border-r border-primaryColor">Login</div>
-            <div class="px-4">Register</div>
+            <div @click.prevent="openOverlayLogin()" class="pr-4 border-r border-primaryColor">Login</div>
+            <div @click.prevent="openOverlayRegister()" class="px-4">Register</div>
         </div>
         <div class="pt-5 grid gap-2.5 py-5 border-y border-y-primaryColor5">
             <div>
@@ -23,10 +23,26 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
+import { useUiStore } from '~/store/ui';
+import LoginForm from '../form/login-form/LoginForm.vue';
+import RegisterForm from '../form/register-form/RegisterForm.vue';
 export default defineComponent({
+    name: 'MenuMobile',
+    components: {},
     setup() {
-        return {};
+        const ui = useUiStore();
+        const openOverlayLogin = () => {
+            ui.openOverlay(LoginForm);
+            ui.closeMenu();
+        };
+        const openOverlayRegister = () => {
+            ui.openOverlay(RegisterForm);
+            ui.closeMenu();
+        };
+        return {
+            openOverlayLogin,
+            openOverlayRegister,
+        };
     },
 });
 </script>
