@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
-    modules: ['nuxt-svgo', 'nuxt-icons', 'nuxt-icon'],
+    modules: ['nuxt-svgo', 'nuxt-icon', '@pinia/nuxt'],
     svgo: {
         defaultImport: 'component',
     },
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
         customCollections: [
             {
                 prefix: 'my-icon',
-                dir: './assets/icons',
+                dir: './assets/icon',
             },
         ],
     },
