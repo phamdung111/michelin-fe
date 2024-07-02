@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="pt-[80px] relative">
+        <div class="pt-[80px]">
             <div>
                 <div class="max-h-[444px] h-[226px] md:h-[444px] shadow-xl">
                     <img class="h-full w-full object-cover" src="@/assets/images/dashboard/footer-image.jpeg" alt="" />
@@ -53,9 +53,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MichelinStar from '~~/assets/icons/michelin-star.svg';
-import AppStoreIcon from '~~/assets/icons/app-store-icon.svg';
-import ChPlayStoreIcon from '~~/assets/icons/google-playstore-en.svg';
+import MichelinStar from '~~/assets/icon/michelin-star.svg';
+import AppStoreIcon from '~~/assets/icon/app-store-icon.svg';
+import ChPlayStoreIcon from '~~/assets/icon/google-playstore-en.svg';
 import SearchForm from '~/components/form/SearchForm.vue';
 import LatestNews from './section/LatestNews.vue';
 export default defineComponent({

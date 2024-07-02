@@ -8,11 +8,18 @@ export default {
                 primaryColor2: '#ffffff',
                 primaryColor3: 'rgb(77, 77, 77)',
                 primaryColor4: 'rgb(78, 78, 78)',
+                peimaryColor5: 'rgb(1, 1, 1)',
                 primaryWhite: '#fff',
                 primaryOrange: 'rgb(189, 35, 51)',
             },
             spacing: {
                 spaceTopNav: '64px',
+            },
+            height: {
+                header: '64px',
+            },
+            zIndex: {
+                menu: '10',
             },
         },
     },

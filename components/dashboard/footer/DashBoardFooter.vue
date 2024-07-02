@@ -1,5 +1,4 @@
 <template>
-    
     <div>
         <div class="px-6">
             <div class="py-5">
@@ -79,10 +78,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import YoutubeIcon from '~~/assets/icons/youtube-38.svg';
-import FacebookIcon from '~~/assets/icons/facebook-38.svg';
-import BIBMichelinMan from '~~/assets/icons/bib-michelin-man-footer.svg';
-import MichelinGuideVertical from '~~/assets/icons/Michelin-guide-vertical.svg';
+import YoutubeIcon from '~~/assets/icon/youtube-38.svg';
+import FacebookIcon from '~~/assets/icon/facebook-38.svg';
+import BIBMichelinMan from '~~/assets/icon/bib-michelin-man-footer.svg';
+import MichelinGuideVertical from '~~/assets/icon/Michelin-guide-vertical.svg';
 export default defineComponent({
     name: 'DasDashBoardFooter',
     components: {
