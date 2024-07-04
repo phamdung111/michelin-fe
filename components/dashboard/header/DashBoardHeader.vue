@@ -46,6 +46,7 @@ import UserAvatar from './UserAvatar.vue';
 import MenuMobile from '~/components/menu/MenuMobile.vue';
 import MenuDesktop from '~/components/menu/MenuDesktop.vue';
 import { useUiStore } from '~/store/ui';
+import { authenticationComposable } from '~/composables/authentication/authentication-composable';
 export default defineComponent({
     name: 'DashBoardHeader',
     components: {
@@ -60,6 +61,9 @@ export default defineComponent({
         const toggleMenu = () => {
             ui.isOpenMenu = !ui.isOpenMenu;
         };
+        onBeforeMount(async () => {
+            await authenticationComposable();
+        });
         return {
             toggleMenu,
             ui,
