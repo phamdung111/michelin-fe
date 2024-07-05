@@ -2,8 +2,8 @@
     <div class="w-[300px] bg-primaryWhite border shadow-xl rounded-md transition-height">
         <div class="py-[21px] pr-[34px] pl-[26px] text-[14px] text-primaryColor">
             <div class="pb-5">
-                <div class="pb-[6px]">Login</div>
-                <div class="pb-[6px]">Register</div>
+                <div @click.prevent="openOverlayLogin" class="pb-[6px]">Login</div>
+                <div @click.prevent="openOverlayRegister" class="pb-[6px]">Register</div>
             </div>
             <div class="py-5 border-y border-primaryColor3">
                 <div class="pb-[6px]">Restaurant</div>
@@ -21,11 +21,25 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-
+import LoginForm from '../form/login-form/LoginForm.vue';
+import RegisterForm from '../form/register-form/RegisterForm.vue';
+import { useUiStore } from '~/store/ui';
 export default defineComponent({
     name: 'MenuDesktop',
     setup() {
-        return {};
+        const ui = useUiStore();
+        const openOverlayLogin = () => {
+            ui.openOverlay(LoginForm);
+            ui.closeMenu();
+        };
+        const openOverlayRegister = () => {
+            ui.openOverlay(RegisterForm);
+            ui.closeMenu();
+        };
+        return {
+            openOverlayLogin,
+            openOverlayRegister,
+        };
     },
 });
 </script>

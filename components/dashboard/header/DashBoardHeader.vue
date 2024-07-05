@@ -1,6 +1,6 @@
 <template>
     <div class="shadow-md bg-primaryWhite fixed top-0 right-0 w-full z-menu">
-        <div :class="isShowMenu ? 'h-screen lg:h-header transition-height' : 'h-header'" class="mx-[18px] relative">
+        <div :class="ui.isOpenMenu ? 'h-screen lg:h-header transition-height' : 'h-header'" class="mx-[18px] relative">
             <div class="flex justify-between items-center">
                 <LogoIcon class="max-w-[170px] max-h-[24px] w-[170px] h-[24px]" />
                 <div class="flex">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="isShowMenu">
+            <div v-if="ui.isOpenMenu">
                 <div class="lg:hidden">
                     <MenuMobile />
                 </div>
@@ -32,6 +32,7 @@
                     <MenuDesktop />
                 </div>
             </div>
+            <AppOverlay></AppOverlay>
         </div>
     </div>
 </template>
@@ -39,25 +40,33 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import LogoIcon from '@/assets/icon/michelin-guide-logo-dark.svg';
+import AppOverlay from '~/components/overlay/AppOverlay.vue';
+
 import UserAvatar from './UserAvatar.vue';
 import MenuMobile from '~/components/menu/MenuMobile.vue';
 import MenuDesktop from '~/components/menu/MenuDesktop.vue';
+import { useUiStore } from '~/store/ui';
+import { authenticationComposable } from '~/composables/authentication/authentication-composable';
 export default defineComponent({
     name: 'DashBoardHeader',
     components: {
         UserAvatar,
         MenuMobile,
         MenuDesktop,
+        AppOverlay,
         LogoIcon,
     },
     setup() {
-        const isShowMenu = ref(false);
+        const ui = useUiStore();
         const toggleMenu = () => {
-            isShowMenu.value = !isShowMenu.value;
+            ui.isOpenMenu = !ui.isOpenMenu;
         };
+        onBeforeMount(async () => {
+            await authenticationComposable();
+        });
         return {
             toggleMenu,
-            isShowMenu,
+            ui,
         };
     },
 });

@@ -12,6 +12,7 @@
 import { defineComponent } from 'vue';
 import DashBoardHeader from '~/components/dashboard/header/DashBoardHeader.vue';
 import DashBoardFooter from '~/components/dashboard/footer/DashBoardFooter.vue';
+import { useUiStore } from '~/store/ui';
 export default defineComponent({
     name: 'MainLayout',
     components: {
@@ -19,7 +20,10 @@ export default defineComponent({
         DashBoardFooter,
     },
     setup() {
-        return {};
+        const ui = useUiStore();
+        return {
+            ui,
+        };
     },
 });
 </script>
