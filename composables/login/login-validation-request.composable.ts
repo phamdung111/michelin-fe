@@ -9,17 +9,6 @@ export const loginValidationRequestComposable = async () => {
         email: string().email(),
         password: string().min(8),
     });
-
     const status = await baseFormInputValidation(schema, loginValidateComposable, loginFormData);
-    // try {
-    //     await schema.validate(loginFormData, { abortEarly: false });
-    // } catch (errors: any) {
-    //     errors.inner.forEach((err: any) => {
-    //         loginValidateComposable[err.path as keyof LoginValidateInterface].isFailed = true;
-    //         loginValidateComposable[err.path as keyof LoginValidateInterface].message = err.message;
-    //     });
-    //     status = false;
-    // }
-
     return status;
 };

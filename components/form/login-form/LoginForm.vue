@@ -7,6 +7,7 @@
             <div class="flex justify-center items-center h-full">
                 <div class="w-[320px] h-[320px]">
                     <h2 class="text-[22px] font-medium mb-[22px]">Welcome back.</h2>
+                    <span v-if="validate.loginError.isFailed" class="error-input">{{ validate.loginError.message }}</span>
                     <span v-if="validate.email.isFailed" class="error-input">{{ validate.email.message }}</span>
                     <input v-model="form.email" class="h-[48px] w-full mb-6 border rounded-md focus:outline-none pl-3" placeholder="Email" type="text" />
                     <span v-if="validate.password.isFailed" class="error-input">{{ validate.password.message }}</span>

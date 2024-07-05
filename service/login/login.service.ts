@@ -6,6 +6,6 @@ export const loginService = Object.freeze({
         try {
             const response = await http().post('/api/auth/login', payload);
             return response.data;
-        } catch (error) {}
+        } catch (error: any) {}
     },
 });

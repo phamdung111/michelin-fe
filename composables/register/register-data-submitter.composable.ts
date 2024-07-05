@@ -4,11 +4,13 @@ import { registerRequestMapper } from '~/mapper/request/register/register-reques
 import { registerValidateComposable } from './register-validate.composable';
 import type { RegisterValidateInterFace } from '~/interface/validation/register-validate.interface';
 import { useAuthenticationStore } from '~/store/authentication';
+import { authenticationComposable } from '../authentication/authentication-composable';
 export const registerDataSubmitterComposable = async () => {
     const auth = useAuthenticationStore();
     const status = await registerValidationRequestComposable();
     if (status) {
         const response = await registerService.register(registerRequestMapper());
+
         if (response.errors) {
             for (let key in response.errors) {
                 registerValidateComposable[key as keyof RegisterValidateInterFace].isFailed = true;
@@ -16,6 +18,7 @@ export const registerDataSubmitterComposable = async () => {
             }
         } else {
             auth.setAuthentication(response.original);
+            await authenticationComposable();
         }
     }
 };

@@ -9,4 +9,8 @@ export const loginValidateComposable = reactive<LoginValidateInterface>({
         isFailed: false,
         message: '',
     },
+    loginError: {
+        isFailed: false,
+        message: '',
+    },
 });
