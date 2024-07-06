@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import type { NuxtPage } from 'nuxt/schema';
+import { authenticationComposable } from './composables/authentication/authentication-composable';
 
 export default defineNuxtConfig({
     devtools: { enabled: true },
@@ -32,21 +33,5 @@ export default defineNuxtConfig({
             },
         ],
     },
-    hooks: {
-        // 'pages:extend'(pages) {
-        //     function setMiddleware(pages: NuxtPage[]) {
-        //         for (const page of pages) {
-        //             if (/* some condition */ true) {
-        //                 page.meta ||= {};
-        //                 // Note that this will override any middleware set in `definePageMeta` in the page
-        //                 page.meta.middleware = ['named'];
-        //             }
-        //             if (page.children) {
-        //                 setMiddleware(page.children);
-        //             }
-        //         }
-        //     }
-        //     setMiddleware(pages);
-        // },
-    },
+    hooks: {},
 });

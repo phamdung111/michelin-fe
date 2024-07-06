@@ -2,8 +2,14 @@
     <div class="w-[300px] bg-primaryWhite border shadow-xl rounded-md transition-height">
         <div class="py-[21px] pr-[34px] pl-[26px] text-[14px] text-primaryColor">
             <div class="pb-5">
-                <div @click.prevent="openOverlayLogin" class="pb-[6px]">Login</div>
-                <div @click.prevent="openOverlayRegister" class="pb-[6px]">Register</div>
+                <div v-if="!user.id">
+                    <div @click.prevent="openOverlayLogin" class="pb-[6px]">Login</div>
+                    <div @click.prevent="openOverlayRegister" class="pb-[6px]">Register</div>
+                </div>
+                <div v-else>
+                    <div @click.prevent="navigateTo('/account')" class="pb-[6px]">My Account</div>
+                    <div @click.prevent="openOverlayRegister" class="pb-[6px]">Logout</div>
+                </div>
             </div>
             <div class="py-5 border-y border-primaryColor3">
                 <div class="pb-[6px]">Restaurant</div>
@@ -24,10 +30,12 @@ import { defineComponent } from 'vue';
 import LoginForm from '../form/login-form/LoginForm.vue';
 import RegisterForm from '../form/register-form/RegisterForm.vue';
 import { useUiStore } from '~/store/ui';
+import { useUserStore } from '~/store/user';
 export default defineComponent({
     name: 'MenuDesktop',
     setup() {
         const ui = useUiStore();
+        const user = useUserStore();
         const openOverlayLogin = () => {
             ui.openOverlay(LoginForm);
             ui.closeMenu();
@@ -37,6 +45,7 @@ export default defineComponent({
             ui.closeMenu();
         };
         return {
+            user,
             openOverlayLogin,
             openOverlayRegister,
         };
