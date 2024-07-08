@@ -1,20 +1,20 @@
 <template>
-    <button :class="`bg-${bgColor}`" class="h-[48px] font-medium w-full bg-primaryGreen rounded-md text-primaryWhite">{{ content }}</button>
+    <span v-if="isFailed" class="text-[12px] text-primaryOrange">{{ content }}</span>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'BaseButton',
+    name: 'InputValidation',
     props: {
         content: {
             type: String,
             default: '',
         },
-        bgColor: {
-            type: String,
-            default: '',
+        isFailed: {
+            type: Boolean,
+            default: false,
         },
     },
     setup() {

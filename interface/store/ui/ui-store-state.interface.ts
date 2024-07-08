@@ -4,4 +4,8 @@ export interface uiStoreStateInterface {
         isOpenOverlay: boolean;
         component: any;
     };
+    isOpenNotification: {
+        status: string;
+        message: string;
+    };
 }

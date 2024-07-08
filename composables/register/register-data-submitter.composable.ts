@@ -5,8 +5,10 @@ import { registerValidateComposable } from './register-validate.composable';
 import type { RegisterValidateInterFace } from '~/interface/validation/register-validate.interface';
 import { useAuthenticationStore } from '~/store/authentication';
 import { authenticationComposable } from '../authentication/authentication-composable';
+import { useUiStore } from '~/store/ui';
 export const registerDataSubmitterComposable = async () => {
     const auth = useAuthenticationStore();
+    const ui = useUiStore();
     const status = await registerValidationRequestComposable();
     if (status) {
         const response = await registerService.register(registerRequestMapper());
@@ -19,6 +21,7 @@ export const registerDataSubmitterComposable = async () => {
         } else {
             auth.setAuthentication(response.original);
             await authenticationComposable();
+            ui.closeOverlay();
         }
     }
 };
