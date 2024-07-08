@@ -7,7 +7,7 @@
             </div>
             <div v-else class="flex">
                 <div @click.prevent="goTo('account')" class="pr-4 border-r border-primaryColor">My Account</div>
-                <div @click.prevent="openOverlayRegister()" class="px-4">Logout</div>
+                <div @click.prevent="logout()" class="px-4">Logout</div>
             </div>
         </div>
         <div class="pt-5 grid gap-2.5 py-5 border-y border-y-primaryColor5">
@@ -33,6 +33,7 @@ import { useUiStore } from '~/store/ui';
 import LoginForm from '../form/login-form/LoginForm.vue';
 import RegisterForm from '../form/register-form/RegisterForm.vue';
 import { useUserStore } from '~/store/user';
+import { logoutSubmitter } from '~/composables/logout/logout-submitter.composable';
 export default defineComponent({
     name: 'MenuMobile',
     components: {},
@@ -51,11 +52,15 @@ export default defineComponent({
             navigateTo(`/${route}`);
             ui.closeMenu();
         };
+        const logout = async () => {
+            await logoutSubmitter();
+        };
         return {
             user,
             openOverlayLogin,
             openOverlayRegister,
             goTo,
+            logout,
         };
     },
 });

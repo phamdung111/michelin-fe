@@ -17,7 +17,15 @@ export default defineComponent({
         },
     },
     setup() {
-        const user = useUserStore();
+        let user = useUserStore();
+        watch(
+            () => user.isUpdateUser,
+            () => {
+                if (user.isUpdateUser === true) {
+                    user = useUserStore();
+                }
+            }
+        );
         return {
             user,
             defaultAvatar,

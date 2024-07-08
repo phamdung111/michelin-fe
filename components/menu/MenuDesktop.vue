@@ -7,8 +7,8 @@
                     <div @click.prevent="openOverlayRegister" class="pb-[6px]">Register</div>
                 </div>
                 <div v-else>
-                    <div @click.prevent="navigateTo('/account')" class="pb-[6px]">My Account</div>
-                    <div @click.prevent="openOverlayRegister" class="pb-[6px]">Logout</div>
+                    <div @click.prevent="goTo('/account')" class="pb-[6px]">My Account</div>
+                    <div @click.prevent="logout()" class="pb-[6px]">Logout</div>
                 </div>
             </div>
             <div class="py-5 border-y border-primaryColor3">
@@ -31,6 +31,7 @@ import LoginForm from '../form/login-form/LoginForm.vue';
 import RegisterForm from '../form/register-form/RegisterForm.vue';
 import { useUiStore } from '~/store/ui';
 import { useUserStore } from '~/store/user';
+import { logoutSubmitter } from '~/composables/logout/logout-submitter.composable';
 export default defineComponent({
     name: 'MenuDesktop',
     setup() {
@@ -44,10 +45,19 @@ export default defineComponent({
             ui.openOverlay(RegisterForm);
             ui.closeMenu();
         };
+        const goTo = (router: string) => {
+            navigateTo(router);
+            ui.closeMenu();
+        };
+        const logout = async () => {
+            await logoutSubmitter();
+        };
         return {
             user,
             openOverlayLogin,
             openOverlayRegister,
+            goTo,
+            logout,
         };
     },
 });

@@ -4,8 +4,10 @@ import { useAuthenticationStore } from '~/store/authentication';
 import { loginValidationRequestComposable } from './login-validation-request.composable';
 import { authenticationComposable } from '../authentication/authentication-composable';
 import { loginValidateComposable } from './login-validate.composable';
+import { useUiStore } from '~/store/ui';
 export const loginDataSubmitterComposable = async () => {
     const auth = useAuthenticationStore();
+    const ui = useUiStore();
     const status = await loginValidationRequestComposable();
 
     if (status) {
@@ -13,6 +15,7 @@ export const loginDataSubmitterComposable = async () => {
         if (response) {
             auth.setAuthentication(response);
             await authenticationComposable();
+            ui.closeOverlay();
         } else {
             loginValidateComposable.loginError.isFailed = true;
             loginValidateComposable.loginError.message = 'Login information is incorrect';

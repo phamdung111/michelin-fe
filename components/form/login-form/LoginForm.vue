@@ -39,7 +39,7 @@ export default defineComponent({
             ui.closeOverlay();
         };
         const login = async () => {
-            await loginDataSubmitterComposable();
+            const response = await loginDataSubmitterComposable();
         };
         return {
             form,

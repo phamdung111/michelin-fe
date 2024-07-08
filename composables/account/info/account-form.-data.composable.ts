@@ -9,3 +9,8 @@ export const accountFormData = reactive<AccountRequestInterface>({
     newPassword: '',
     repeatPassword: '',
 });
+export const clearPassword = () => {
+    accountFormData.currentPassword = '';
+    accountFormData.newPassword = '';
+    accountFormData.repeatPassword = '';
+};
