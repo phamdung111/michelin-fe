@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed top-[140px] w-screen" :class="isHidden ? 'hidden' : 'notification'">
+    <div class="fixed top-[140px] w-screen z-notification" :class="isHidden ? 'hidden' : 'notification'">
         <div class="w-full flex justify-center">
             <h2
                 :class="ui.isOpenNotification.status === 'success' ? 'text-primaryGreen' : 'text-primaryOrange'"

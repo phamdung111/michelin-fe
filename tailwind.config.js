@@ -23,6 +23,10 @@ export default {
             },
             zIndex: {
                 menu: '10',
+                notification: '50',
+            },
+            aspectRatio: {
+                square: '1/1',
             },
         },
     },

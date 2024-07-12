@@ -21,7 +21,7 @@ export const registerDataSubmitterComposable = async () => {
         } else {
             auth.setAuthentication(response.original);
             await authenticationComposable();
-            ui.closeOverlay();
+            ui.closePopup();
         }
     }
 };

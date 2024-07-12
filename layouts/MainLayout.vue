@@ -1,7 +1,7 @@
 <template>
     <div>
         <DashBoardHeader />
-        <div class="mt-spaceTopNav">
+        <div class="mt-spaceTopNav flex justify-center">
             <slot />
         </div>
         <DashBoardFooter />
