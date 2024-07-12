@@ -1,8 +1,9 @@
 export interface uiStoreStateInterface {
     isOpenMenu: boolean;
-    overlay: {
-        isOpenOverlay: boolean;
+    popup: {
+        isOpenPopup: boolean;
         component: any;
+        props: any;
     };
     isOpenNotification: {
         status: string;

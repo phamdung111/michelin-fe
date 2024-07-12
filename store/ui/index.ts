@@ -7,9 +7,10 @@ export const useUiStore = defineStore('ui', {
     state: (): uiStoreStateInterface => {
         return {
             isOpenMenu: false,
-            overlay: {
-                isOpenOverlay: false,
+            popup: {
+                isOpenPopup: false,
                 component: '',
+                props: '',
             },
             isOpenNotification: {
                 status: '',
@@ -25,13 +26,19 @@ export const useUiStore = defineStore('ui', {
         closeMenu() {
             this.isOpenMenu = false;
         },
-        openOverlay(component: any) {
-            this.overlay.isOpenOverlay = true;
-            this.overlay.component = component;
+        openPopup(component: any) {
+            this.popup.isOpenPopup = true;
+            this.popup.component = component;
         },
-        closeOverlay() {
-            this.overlay.isOpenOverlay = false;
-            this.overlay.component = '';
+        openPopupData(component: any, props: any) {
+            this.popup.isOpenPopup = true;
+            this.popup.component = component;
+            this.popup.props = props;
+        },
+        closePopup() {
+            this.popup.isOpenPopup = false;
+            this.popup.component = '';
+            this.popup.props = '';
         },
         openNotification(notification: NotificationInterface) {
             this.isOpenNotification.status = notification.status;

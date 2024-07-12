@@ -15,7 +15,7 @@ export const loginDataSubmitterComposable = async () => {
         if (response) {
             auth.setAuthentication(response);
             await authenticationComposable();
-            ui.closeOverlay();
+            ui.closePopup();
         } else {
             loginValidateComposable.loginError.isFailed = true;
             loginValidateComposable.loginError.message = 'Login information is incorrect';

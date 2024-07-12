@@ -2,8 +2,8 @@
     <div class="px-[25px] text-[18px] font-normal text-primaryColor5">
         <div class="py-5">
             <div v-if="!user.id" class="flex">
-                <div @click.prevent="openOverlayLogin()" class="pr-4 border-r border-primaryColor">Login</div>
-                <div @click.prevent="openOverlayRegister()" class="px-4">Register</div>
+                <div @click.prevent="openPopupLogin()" class="pr-4 border-r border-primaryColor">Login</div>
+                <div @click.prevent="openPopupRegister()" class="px-4">Register</div>
             </div>
             <div v-else class="flex">
                 <div @click.prevent="goTo('account')" class="pr-4 border-r border-primaryColor">My Account</div>
@@ -40,12 +40,12 @@ export default defineComponent({
     setup() {
         const user = useUserStore();
         const ui = useUiStore();
-        const openOverlayLogin = () => {
-            ui.openOverlay(LoginForm);
+        const openPopupLogin = () => {
+            ui.openPopup(LoginForm);
             ui.closeMenu();
         };
-        const openOverlayRegister = () => {
-            ui.openOverlay(RegisterForm);
+        const openPopupRegister = () => {
+            ui.openPopup(RegisterForm);
             ui.closeMenu();
         };
         const goTo = (route: String) => {
@@ -57,8 +57,8 @@ export default defineComponent({
         };
         return {
             user,
-            openOverlayLogin,
-            openOverlayRegister,
+            openPopupLogin,
+            openPopupRegister,
             goTo,
             logout,
         };

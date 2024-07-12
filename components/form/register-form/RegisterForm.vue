@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col max-w-[550px] max-h-[580px] w-[550px] h-[580px] shadow-xl bg-primaryWhite rounded-lg">
         <div class="flex justify-end items-center mr-4 basis-[58px]">
-            <Icon @click.prevent="closeOverlayRegister()" name="mdi:close" size="40" />
+            <Icon @click.prevent="closePopupRegister()" name="mdi:close" size="40" />
         </div>
         <div class="grow">
             <div class="flex justify-center items-center">
@@ -47,14 +47,14 @@ export default defineComponent({
         const submitFormRegister = async () => {
             await registerDataSubmitterComposable();
         };
-        const closeOverlayRegister = () => {
-            ui.closeOverlay();
+        const closePopupRegister = () => {
+            ui.closePopup();
             ui.closeMenu();
         };
         return {
             form,
             validate,
-            closeOverlayRegister,
+            closePopupRegister,
             submitFormRegister,
         };
     },

@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col max-w-[550px] max-h-[580px] w-[550px] h-[580px] shadow-xl bg-primaryWhite rounded-lg">
         <div class="flex justify-end items-center mr-4 basis-[58px]">
-            <Icon @click.prevent="closeOverlayLogin()" name="mdi:close" size="40" />
+            <Icon @click.prevent="closePopupLogin()" name="mdi:close" size="40" />
         </div>
         <div class="grow">
             <div class="flex justify-center items-center h-full">
@@ -35,8 +35,8 @@ export default defineComponent({
     },
     setup() {
         const ui = useUiStore();
-        const closeOverlayLogin = () => {
-            ui.closeOverlay();
+        const closePopupLogin = () => {
+            ui.closePopup();
         };
         const login = async () => {
             const response = await loginDataSubmitterComposable();
@@ -44,7 +44,7 @@ export default defineComponent({
         return {
             form,
             validate,
-            closeOverlayLogin,
+            closePopupLogin,
             login,
         };
     },

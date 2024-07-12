@@ -1,20 +1,18 @@
 <template>
     <nuxt-layout name="account-layout">
-        <template #title> My Account </template>
+        <template #title> My restaurant </template>
         <template #content>
-            <div class="w-full flex justify-center">
-                <MainAccount />
-            </div>
+            <AccountRestaurant />
         </template>
     </nuxt-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MainAccount from '~/components/account/MainAccount.vue';
+import AccountRestaurant from '~/components/account/restaurant/AccountRestaurant.vue';
 export default defineComponent({
     components: {
-        MainAccount,
+        AccountRestaurant,
     },
     setup() {
         return {};

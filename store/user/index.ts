@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import type { RestaurantsResponseInterface } from '~/interface/response/restaurant/restaurants-response.interface';
 import type { UserStoreStateInterface } from '~/interface/store/user/user-store-state.interface';
 export const useUserStore = defineStore('user', {
     state: (): UserStoreStateInterface => {
@@ -11,6 +12,13 @@ export const useUserStore = defineStore('user', {
             role: '',
             phone: '',
             description: '',
+            restaurants: {
+                items: [],
+                current_page: 0,
+                last_page: 0,
+                per_page: 0,
+                total: 0,
+            },
         };
     },
     actions: {
@@ -33,6 +41,14 @@ export const useUserStore = defineStore('user', {
             this.role = '';
             this.phone = '';
             this.description = '';
+        },
+        setRestaurants(restaurants: RestaurantsResponseInterface) {
+            this.restaurants.items = [...restaurants.items];
+            this.restaurants.items = restaurants.items;
+            this.restaurants.current_page = restaurants.current_page;
+            this.restaurants.last_page = restaurants.last_page;
+            this.restaurants.per_page = restaurants.per_page;
+            this.restaurants.total = restaurants.total;
         },
     },
 });

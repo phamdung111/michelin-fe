@@ -4,7 +4,7 @@ import { authenticationComposable } from './composables/authentication/authentic
 
 export default defineNuxtConfig({
     devtools: { enabled: true },
-    modules: ['nuxt-svgo', 'nuxt-icon', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'],
+    modules: ['nuxt-svgo', 'nuxt-icon', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt', '@nuxt/ui'],
     svgo: {
         defaultImport: 'component',
     },
