@@ -1,6 +1,17 @@
 <template>
     <div>
-        <DashBoardHeader />
+        <DashBoardHeader>
+            <template #menu>
+                <div v-if="ui.isOpenMenu">
+                    <div class="lg:hidden">
+                        <MenuMobile />
+                    </div>
+                    <div class="absolute top-spaceTopNav right-0 hidden lg:block">
+                        <MenuDesktop />
+                    </div>
+                </div>
+            </template>
+        </DashBoardHeader>
         <div class="mt-spaceTopNav flex justify-center">
             <slot />
         </div>
@@ -12,12 +23,17 @@
 import { defineComponent } from 'vue';
 import DashBoardHeader from '~/components/dashboard/header/DashBoardHeader.vue';
 import DashBoardFooter from '~/components/dashboard/footer/DashBoardFooter.vue';
+import MenuMobile from '~/components/menu/MenuMobile.vue';
+import MenuDesktop from '~/components/menu/MenuDesktop.vue';
+
 import { useUiStore } from '~/store/ui';
 export default defineComponent({
     name: 'MainLayout',
     components: {
         DashBoardHeader,
         DashBoardFooter,
+        MenuMobile,
+        MenuDesktop,
     },
     setup() {
         const ui = useUiStore();
