@@ -24,14 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="ui.isOpenMenu">
-                <div class="lg:hidden">
-                    <MenuMobile />
-                </div>
-                <div class="absolute top-spaceTopNav right-0 hidden lg:block">
-                    <MenuDesktop />
-                </div>
-            </div>
+            <slot name="menu"/>
             <AppOverlay></AppOverlay>
         </div>
     </div>
@@ -43,8 +36,6 @@ import LogoIcon from '@/assets/icon/michelin-guide-logo-dark.svg';
 import AppOverlay from '~/components/overlay/AppOverlay.vue';
 
 import UserAvatar from './UserAvatar.vue';
-import MenuMobile from '~/components/menu/MenuMobile.vue';
-import MenuDesktop from '~/components/menu/MenuDesktop.vue';
 import { useUiStore } from '~/store/ui';
 import { useAuthenticationStore } from '~/store/authentication';
 import { authenticationComposable } from '~/composables/authentication/authentication-composable';
@@ -52,8 +43,6 @@ export default defineComponent({
     name: 'DashBoardHeader',
     components: {
         UserAvatar,
-        MenuMobile,
-        MenuDesktop,
         AppOverlay,
         LogoIcon,
     },
