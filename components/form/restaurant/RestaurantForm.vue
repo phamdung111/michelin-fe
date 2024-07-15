@@ -52,9 +52,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import BaseButton from '~/components/button/BaseButton.vue';
-import { restaurantFormDataSubmitterComposable } from '~/composables/restaurant/account/create/restaurant-form-data-submitter.composable';
-import { restaurantFormData as form } from '~/composables/restaurant/account/create/restaurant-form-data.composable';
-import { restaurantFormValidation as validate } from '~/composables/restaurant/account/create/restaurant-form-validation.composable';
+import { restaurantFormDataSubmitterComposable } from '~/composables/account/restaurant/create/restaurant-form-data-submitter.composable';
+import { restaurantFormData as form } from '~/composables/account/restaurant/create/restaurant-form-data.composable';
+import { restaurantFormValidation as validate } from '~/composables/account/restaurant/create/restaurant-form-validation.composable';
 import InputValidation from '~/components/validation/input/InputValidation.vue';
 import { useUiStore } from '~/store/ui';
 export default defineComponent({

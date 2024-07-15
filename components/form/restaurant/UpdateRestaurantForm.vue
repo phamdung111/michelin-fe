@@ -60,9 +60,9 @@ import { defineComponent } from 'vue';
 import BaseButton from '~/components/button/BaseButton.vue';
 import InputValidation from '~/components/validation/input/InputValidation.vue';
 import { useUiStore } from '~/store/ui';
-import { restaurantFormUpdateData as form } from '../../../composables/restaurant/account/update/restaurant-form-update-data.composable';
-import { restaurantFormUpdateValidation as validate } from '../../../composables/restaurant/account/update/restaurant-form-update-validation.composable';
-import { restaurantFormUpdateDataSubmitterComposable } from '~/composables/restaurant/account/update/restaurant-form-update-data-submitter.composable';
+import { restaurantFormUpdateData as form } from '../../../composables/account/restaurant/update/restaurant-form-update-data.composable';
+import { restaurantFormUpdateValidation as validate } from '../../../composables/account/restaurant/update/restaurant-form-update-validation.composable';
+import { restaurantFormUpdateDataSubmitterComposable } from '~/composables/account/restaurant/update/restaurant-form-update-data-submitter.composable';
 
 export default defineComponent({
     name: 'UpdateRestaurantForm',

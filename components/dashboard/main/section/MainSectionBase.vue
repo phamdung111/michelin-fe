@@ -20,9 +20,9 @@
                             <template #image>
                                 <div class="relative">
                                     <img :src="item.images[0].image" alt="" />
-                                    <div class="absolute top-2 right-2 ">
+                                    <div class="absolute top-2 right-2">
                                         <div class="w-[30px] aspect-square bg-primaryWhite rounded-full flex justify-center items-center">
-                                            <LikeButton :size="20" />
+                                            <LikeButton :size="20" :restaurantId="item.id" />
                                         </div>
                                     </div>
                                 </div>
