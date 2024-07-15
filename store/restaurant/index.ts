@@ -1,3 +1,4 @@
+import type { RestaurantResponseInterface } from '~/interface/response/restaurant/restaurant-response.interface';
 import type { RestaurantsResponseInterface } from '~/interface/response/restaurant/restaurants-response.interface';
 import type { restaurantStoreStateInterface } from '~/interface/store/restaurant/restaurant-store-state.interface';
 
@@ -18,6 +19,9 @@ export const useRestaurantStore = defineStore('restaurant', {
             this.last_page = restaurants.last_page;
             this.per_page = restaurants.per_page;
             this.total = restaurants.total;
+        },
+        setRestaurantDashboard(restaurants: RestaurantResponseInterface[]) {
+            this.restaurants = [...restaurants];
         },
     },
 });

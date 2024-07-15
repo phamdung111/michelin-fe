@@ -1,5 +1,33 @@
 <template>
     <div>
+        <div class="pt-[80px]">
+            <div>
+                <div class="max-h-[444px] h-[226px] md:h-[444px] shadow-xl">
+                    <img class="h-full w-full object-cover" src="@/assets/images/dashboard/footer-image.jpeg" alt="" />
+                </div>
+            </div>
+            <div class="relative -mt-[100px]">
+                <div class="mx-[57px] bg-white shadow-md rounded-lg">
+                    <div class="flex">
+                        <div class="px-4">
+                            <img class="h-full" src="@/assets/images/dashboard/app-pic-en.jpg" alt="" />
+                        </div>
+                        <div class="px-4 flex items-center">
+                            <div>
+                                <MichelinStar class="w-[36px]"></MichelinStar>
+                                <h2 class="text-[16px] md:text-[24px] font-medium">Use the app to find the best restaurants and hotels everywhere</h2>
+                            </div>
+                        </div>
+                        <div class="px-4">
+                            <div class="p-6">
+                                <AppStoreIcon class="w-[150px] px-6 py-3" />
+                                <ChPlayStoreIcon class="w-[150px] px-6 py-3" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="px-6">
             <div class="py-5">
                 <div>
