@@ -18,7 +18,7 @@ import { defineComponent } from 'vue';
 import MainSectionBase from './MainSectionBase.vue';
 import CardBase from '~/components/card/CardBase.vue';
 export default defineComponent({
-    name: 'LatestNews',
+    name: 'DashBoardLatestNews',
     components: {
         MainSectionBase,
         CardBase,
