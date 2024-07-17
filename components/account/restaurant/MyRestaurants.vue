@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { accountRestaurantInitialDataComposable } from '~/composables/restaurant/account/initial/account-restaurants-initial-data.composable';
+import { accountRestaurantInitialDataComposable } from '~/composables/account/restaurant/initial/account-restaurants-initial-data.composable';
 import { useUserStore } from '~/store/user';
 import { useUiStore } from '~/store/ui';
 import BaseButton from '~/components/button/BaseButton.vue';

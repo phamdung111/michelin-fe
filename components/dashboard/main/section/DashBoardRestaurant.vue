@@ -9,22 +9,20 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MainSectionBase from './MainSectionBase.vue';
-import CardBase from '~/components/card/CardBase.vue';
 import BaseButton from '~/components/button/BaseButton.vue';
-import { dashboardRestaurantsInitialDataComposable } from '~/composables/dashboard/restaurants/dashboard-restaurants-initial-data.composable';
+import { restaurantsInitialDataComposable } from '~/composables/restaurant/initial/restaurants-initial-data.composable';
 import { useRestaurantStore } from '~/store/restaurant';
 export default defineComponent({
     name: 'DashboardRestaurant',
     components: {
         MainSectionBase,
-        CardBase,
         BaseButton,
     },
     setup() {
         const restaurant = useRestaurantStore();
 
         onMounted(async () => {
-            await dashboardRestaurantsInitialDataComposable();
+            await restaurantsInitialDataComposable();
         });
         return {
             restaurant,

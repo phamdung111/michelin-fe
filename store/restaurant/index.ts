@@ -6,6 +6,7 @@ export const useRestaurantStore = defineStore('restaurant', {
     state: (): restaurantStoreStateInterface => {
         return {
             restaurants: [],
+            restaurantSelected: null,
             current_page: 0,
             last_page: 0,
             per_page: 0,
@@ -22,6 +23,9 @@ export const useRestaurantStore = defineStore('restaurant', {
         },
         setRestaurantDashboard(restaurants: RestaurantResponseInterface[]) {
             this.restaurants = [...restaurants];
+        },
+        setRestaurantSelected(restaurant: RestaurantResponseInterface) {
+            this.restaurantSelected = restaurant;
         },
     },
 });

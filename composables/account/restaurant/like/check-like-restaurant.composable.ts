@@ -1,6 +1,6 @@
-import { likeRestaurantService } from '~/service/restaurant/like-restaurant.service';
+import { accountLikeRestaurantService } from '~/service/account/restaurant/like/account-like-restaurant.service';
 
 export const checkLikeRestaurantComposable = async (restaurantId: number) => {
-    const response = await likeRestaurantService.checkLike(restaurantId);
+    const response = await accountLikeRestaurantService.checkLike(restaurantId);
     return response;
 };

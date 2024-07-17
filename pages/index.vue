@@ -1,7 +1,9 @@
 <template>
     <nuxt-layout name="main-layout">
-        <MainDashBoard />
-        <NotificationOverlay />
+        <template #default>
+            <MainDashBoard />
+            <NotificationOverlay />
+        </template>
     </nuxt-layout>
 </template>
 

@@ -1,4 +1,4 @@
-import { accountService } from '~/service/account/account.service';
+import { updateAccountService } from '~/service/account/update/update-account.service';
 import { accountValidateRequestComposable } from './account-form-validate-request.composable';
 import { accountFormData, clearPassword } from './account-form.-data.composable';
 import { accountFormValidationComposable } from './account-form-validation.composable';
@@ -11,7 +11,7 @@ export const accountFormSubmitterComposable = async () => {
     const status = await accountValidateRequestComposable();
 
     if (status) {
-        const response = await accountService.updateInfo(accountFormData);
+        const response = await updateAccountService.updateInfo(accountFormData);
         if (response.errors) {
             for (let key in response.errors) {
                 accountFormValidationComposable[key as keyof AccountValidationInterface].isFailed = true;

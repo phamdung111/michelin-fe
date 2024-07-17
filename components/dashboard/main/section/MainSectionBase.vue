@@ -7,7 +7,7 @@
         <div class="w-full">
             <div class="flex relative gap-2">
                 <div class="absolute -top-[40px] right-0 text-primaryColor3 flex gap-4">
-                    <div v-if="firstCurrentItem !== 0" @click.prevent="freButton()" class="border border-primaryColor3 flex justify-center p-1 rounded-sm">
+                    <div v-if="firstCurrentItem !== 0" @click.prevent="preButton()" class="border border-primaryColor3 flex justify-center p-1 rounded-sm">
                         <Icon size="15" name="material-symbols-light:arrow-back-ios-rounded" />
                     </div>
                     <div @click.prevent="nextButton()" v-if="lastCurrentItem < items.length" class="border border-primaryColor3 flex justify-center p-1 rounded-sm">
@@ -18,8 +18,8 @@
                     <nuxt-link :to="`/restaurant/${item.id}`" target="blank">
                         <CardBase :item="item">
                             <template #image>
-                                <div class="relative">
-                                    <img :src="item.images[0].image" alt="" />
+                                <div class="relative w-full h-full">
+                                    <img class="w-full h-full object-cover" :src="item.images[0].image" alt="" />
                                     <div class="absolute top-2 right-2">
                                         <div class="w-[30px] aspect-square bg-primaryWhite rounded-full flex justify-center items-center">
                                             <LikeButton :size="20" :restaurantId="item.id" />
@@ -76,7 +76,7 @@ export default defineComponent({
         const nextButton = () => {
             lastCurrentItem.value++;
         };
-        const freButton = () => {
+        const preButton = () => {
             lastCurrentItem.value--;
         };
         watch(
@@ -93,7 +93,7 @@ export default defineComponent({
             firstCurrentItem,
             itemsShow,
             nextButton,
-            freButton,
+            preButton,
         };
     },
 });

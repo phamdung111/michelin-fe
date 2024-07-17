@@ -1,7 +1,7 @@
 import type { AccountRequestInterface } from '~/interface/request/account/account-request.interface';
 import { http } from '~/utils/http/http';
 
-export const accountService = Object.freeze({
+export const updateAccountService = Object.freeze({
     updateInfo: async (payload: AccountRequestInterface) => {
         try {
             const response = await http().post('/api/auth/update-profile', payload);
