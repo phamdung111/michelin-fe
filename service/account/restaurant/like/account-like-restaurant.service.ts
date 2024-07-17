@@ -1,6 +1,6 @@
 import { http } from '~/utils/http/http';
 
-export const likeRestaurantService = Object.freeze({
+export const accountLikeRestaurantService = Object.freeze({
     checkLike: async (restaurantId: number): Promise<boolean> => {
         try {
             const response = await http().post('/api/auth/check', {

@@ -16,6 +16,7 @@
             <slot />
         </div>
         <DashBoardFooter />
+        <NotificationOverlay />
     </div>
 </template>
 
@@ -25,7 +26,7 @@ import DashBoardHeader from '~/components/dashboard/header/DashBoardHeader.vue';
 import DashBoardFooter from '~/components/dashboard/footer/DashBoardFooter.vue';
 import MenuMobile from '~/components/menu/MenuMobile.vue';
 import MenuDesktop from '~/components/menu/MenuDesktop.vue';
-
+import NotificationOverlay from '~/components/notification/NotificationOverlay.vue';
 import { useUiStore } from '~/store/ui';
 export default defineComponent({
     name: 'MainLayout',
@@ -34,6 +35,7 @@ export default defineComponent({
         DashBoardFooter,
         MenuMobile,
         MenuDesktop,
+        NotificationOverlay,
     },
     setup() {
         const ui = useUiStore();

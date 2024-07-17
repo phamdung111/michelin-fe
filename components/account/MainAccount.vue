@@ -11,13 +11,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import MyInfo from './MyInfo.vue';
-import MainRestaurant from './restaurant/AccountRestaurant.vue';
 
 export default defineComponent({
     name: 'MainAccount',
     components: {
         MyInfo,
-        MainRestaurant,
     },
     setup() {
         return {};

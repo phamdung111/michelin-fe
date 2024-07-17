@@ -16,6 +16,8 @@ export default {
                 primaryGreen: '#15A62B',
                 primaryYellow: 'rgb(153,153,0)',
                 primaryBlue: 'rgb(0,0,205)',
+                primaryBlue2: '#336dde',
+                primaryBgBlur: 'rgba(0, 0, 0, 0.35)',
             },
             spacing: {
                 spaceTopNav: '64px',

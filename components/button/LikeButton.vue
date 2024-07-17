@@ -16,7 +16,7 @@ export default defineComponent({
     props: {
         size: {
             type: Number,
-            default: 0,
+            default: 30,
         },
         restaurantId: {
             type: Number,
