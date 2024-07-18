@@ -13,7 +13,7 @@
             </div>
             <div class="py-5 border-y border-primaryColor3">
                 <div class="pb-[6px]">Restaurant</div>
-                <div class="pb-[6px]">Favorite</div>
+                <div @click.prevent="goTo('/favorite')" class="pb-[6px]">Favorite</div>
                 <div class="pb-[6px]">Contact us</div>
                 <div class="pb-[6px]">Events</div>
             </div>

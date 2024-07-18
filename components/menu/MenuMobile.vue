@@ -14,7 +14,7 @@
             <div>
                 <span> Restaurants </span>
             </div>
-            <div>
+            <div @click.prevent="goTo('favorite')">
                 <span> Favorite </span>
             </div>
             <div>

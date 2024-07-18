@@ -1,3 +1,4 @@
+import type { restaurantFavoriteResponseInterface } from '~/interface/response/favorite/restaurant-favorite-response.interface';
 import type { RestaurantResponseInterface } from '~/interface/response/restaurant/restaurant-response.interface';
 
 export interface UserStoreStateInterface {
@@ -16,4 +17,5 @@ export interface UserStoreStateInterface {
         per_page: number;
         total: number;
     };
+    favorites: restaurantFavoriteResponseInterface[];
 }
