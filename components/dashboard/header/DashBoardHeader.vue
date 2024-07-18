@@ -9,7 +9,7 @@
                             <div class="py-[6px] px-[22px]">
                                 <h2>Restaurants</h2>
                             </div>
-                            <div class="py-[6px] px-[22px]">
+                            <div @click.prevent="goTo('favorite')" class="py-[6px] px-[22px]">
                                 <h2>Favorite</h2>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <slot name="menu"/>
+            <slot name="menu" />
             <AppOverlay></AppOverlay>
         </div>
     </div>
@@ -57,9 +57,13 @@ export default defineComponent({
                 await authenticationComposable();
             }
         });
+        const goTo = (route: string) => {
+            navigateTo(`/${route}`);
+        };
         return {
-            toggleMenu,
             ui,
+            toggleMenu,
+            goTo,
         };
     },
 });
