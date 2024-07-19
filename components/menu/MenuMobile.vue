@@ -17,6 +17,10 @@
             <div @click.prevent="goTo('favorite')">
                 <span> Favorite </span>
             </div>
+            <div @click.prevent="goTo('order')" class="flex gap-2">
+                <span> Orders </span>
+                <NotificationInformation />
+            </div>
             <div>
                 <span> Contact us </span>
             </div>
@@ -32,11 +36,14 @@ import { defineComponent } from 'vue';
 import { useUiStore } from '~/store/ui';
 import LoginForm from '../form/login-form/LoginForm.vue';
 import RegisterForm from '../form/register-form/RegisterForm.vue';
+import NotificationInformation from '../notification/NotificationInformation.vue';
 import { useUserStore } from '~/store/user';
 import { logoutSubmitter } from '~/composables/logout/logout-submitter.composable';
 export default defineComponent({
     name: 'MenuMobile',
-    components: {},
+    components: {
+        NotificationInformation,
+    },
     setup() {
         const user = useUserStore();
         const ui = useUiStore();
@@ -55,6 +62,7 @@ export default defineComponent({
         const logout = async () => {
             await logoutSubmitter();
         };
+
         return {
             user,
             openPopupLogin,

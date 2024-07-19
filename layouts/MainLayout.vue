@@ -13,7 +13,9 @@
             </template>
         </DashBoardHeader>
         <div class="mt-spaceTopNav flex justify-center">
-            <slot />
+            <div class="mt-[40px] w-full px-2">
+                <slot />
+            </div>
         </div>
         <DashBoardFooter />
         <NotificationOverlay />

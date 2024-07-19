@@ -3,11 +3,16 @@
         <table class="w-full overflow-hidden">
             <thead class="bg-primaryGreen">
                 <tr>
-                    <th v-for="header in headers" :key="header.title" style="text-align: center">{{ header.title }}</th>
+                    <th v-for="header in headers" :key="header.title" style="text-align: center">
+                        <span v-if="header.title === 'ID'"></span>
+                        <span v-else>
+                            {{ header.title }}
+                        </span>
+                    </th>
                 </tr>
             </thead>
             <tbody v-if="mapData.length" class="text-[13px]">
-                <tr v-for="(item, index) in mapData" :key="index" class="relative">
+                <tr v-for="(item, index) in mapData" :key="index" class="relative py-1 border-b">
                     <slot :item="item">
                         <td v-for="(cell, i) in item" :key="i">
                             {{ cell }}

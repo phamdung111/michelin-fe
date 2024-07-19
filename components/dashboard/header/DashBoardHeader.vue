@@ -15,6 +15,9 @@
                         </div>
                     </div>
                     <div class="flex gap-3 items-center px-4 py-2 lg:border-[1px] border-primaryColor1 rounded-lg h-[58px]">
+                        <div @click.prevent="toggleMenu()">
+                            <NotificationInformation />
+                        </div>
                         <UserAvatar :size="40" />
                         <Icon
                             @click.prevent="toggleMenu()"
@@ -34,17 +37,20 @@
 import { defineComponent } from 'vue';
 import LogoIcon from '@/assets/icon/michelin-guide-logo-dark.svg';
 import AppOverlay from '~/components/overlay/AppOverlay.vue';
+import NotificationInformation from '~/components/notification/NotificationInformation.vue';
 
 import UserAvatar from './UserAvatar.vue';
 import { useUiStore } from '~/store/ui';
 import { useAuthenticationStore } from '~/store/authentication';
 import { authenticationComposable } from '~/composables/authentication/authentication-composable';
+
 export default defineComponent({
     name: 'DashBoardHeader',
     components: {
         UserAvatar,
         AppOverlay,
         LogoIcon,
+        NotificationInformation,
     },
     setup() {
         const ui = useUiStore();
@@ -60,6 +66,7 @@ export default defineComponent({
         const goTo = (route: string) => {
             navigateTo(`/${route}`);
         };
+
         return {
             ui,
             toggleMenu,

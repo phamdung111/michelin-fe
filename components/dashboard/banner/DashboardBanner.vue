@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="px-6 py-4 w-full lg:hidden">
+        <div class="px-6 w-full lg:hidden">
             <h2 class="text-[14px] font-medium">RESTAURANTS</h2>
             <SearchForm :size="48" />
         </div>
