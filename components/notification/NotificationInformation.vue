@@ -1,0 +1,47 @@
+<template>
+    <div
+        v-if="countNotification"
+        :class="`w-[${size}px] h-[${size}px]`"
+        class="rounded-full bg-primaryOrange text-primaryWhite flex items-center justify-center font-bold hover:cursor-pointer">
+        <h6>
+            {{ countNotification }}
+        </h6>
+    </div>
+</template>
+
+<script lang="ts">
+definePageMeta({
+    middleware: ['auth'],
+});
+import { defineComponent } from 'vue';
+import { countOrdersTodayInitialDataComposable } from '~/composables/restaurant/order/initial/count-orders-today-initial-data.composable';
+import { useOrderStore } from '~/store/order';
+export default defineComponent({
+    name: 'NotificationInformation',
+    props: {
+        size: {
+            type: Number,
+            default: 30,
+        },
+    },
+    setup() {
+        const order = useOrderStore();
+        const countNotification = ref(0);
+        watch(
+            () => order.countOrderToday,
+            () => {
+                countNotification.value = order.countOrderToday;
+            }
+        );
+        onMounted(async () => {
+            await countOrdersTodayInitialDataComposable();
+            countNotification.value = order.countOrderToday;
+        });
+        return {
+            countNotification,
+        };
+    },
+});
+</script>
+
+<style scoped></style>

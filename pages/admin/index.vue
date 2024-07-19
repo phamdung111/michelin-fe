@@ -8,6 +8,9 @@
 </template>
 
 <script lang="ts">
+definePageMeta({
+    middleware: ['admin'],
+});
 import { defineComponent } from 'vue';
 import NotificationOverlay from '~/components/notification/NotificationOverlay.vue';
 export default defineComponent({
