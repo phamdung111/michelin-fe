@@ -11,9 +11,19 @@ export const orderRestaurantService = Object.freeze({
             return errors.response.data;
         }
     },
-    orders: async (page: Number): Promise<OrdersRestaurantResponseInterface> => {
+    ordersToday: async (page: Number): Promise<OrdersRestaurantResponseInterface> => {
         try {
             const response = await http().post('api/auth/order-restaurant-today', {
+                page: page,
+            });
+            return response.data;
+        } catch (errors: any) {
+            return errors.response.data;
+        }
+    },
+    ordersOld: async (page: Number): Promise<OrdersRestaurantResponseInterface> => {
+        try {
+            const response = await http().post('api/auth/old-order-restaurant', {
                 page: page,
             });
             return response.data;
