@@ -47,7 +47,7 @@
             </BaseTable>
         </div>
         <div v-else>
-            <h6>Your restaurants aren't order today!</h6>
+            <h6 class="text-center">Your restaurants aren't order today!</h6>
         </div>
     </div>
 </template>

@@ -41,7 +41,7 @@
             </BaseTable>
         </div>
         <div v-else>
-            <h6 class="text-center">Your restaurants aren't order today!</h6>
+            <h6 class="text-center">Your restaurants aren't order in the future!</h6>
         </div>
     </div>
 </template>
@@ -49,10 +49,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import BaseTable from '../table/BaseTable.vue';
-import { restaurantOrdersOldInitialDataComposable } from '~/composables/restaurant/order/initial/old/restaurant-orders-old-initial-data.composable';
 import { useOrderStore } from '~/store/order';
+import { restaurantOrdersFutureInitialDataComposable } from '~/composables/restaurant/order/initial/future/restaurant-orders-future-initial-data.composable';
 export default defineComponent({
-    name: 'OrderOld',
+    name: 'OrderFuture',
     components: {
         BaseTable,
     },
@@ -60,7 +60,7 @@ export default defineComponent({
         const route = useRoute();
         const order = useOrderStore();
         const toPage = async (toPage: Number) => {
-            await restaurantOrdersOldInitialDataComposable(toPage);
+            await restaurantOrdersFutureInitialDataComposable(toPage);
         };
         const headers = [
             {
@@ -86,7 +86,7 @@ export default defineComponent({
         ];
         onMounted(async () => {
             let page = route.query.restaurant || 1;
-            await restaurantOrdersOldInitialDataComposable(Number(page));
+            await restaurantOrdersFutureInitialDataComposable(Number(page));
         });
         return {
             order,

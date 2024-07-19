@@ -31,6 +31,17 @@ export const orderRestaurantService = Object.freeze({
             return errors.response.data;
         }
     },
+    ordersFuture: async (page: Number): Promise<OrdersRestaurantResponseInterface> => {
+        try {
+            const response = await http().post('api/auth/future-order-restaurant', {
+                page: page,
+            });
+            return response.data;
+        } catch (errors: any) {
+            return errors.response.data;
+        }
+    },
+
     update: async (payload: restaurantOrderUpdateStatusInterface): Promise<Boolean> => {
         try {
             const response = await http().post('api/auth/change-status', payload);

@@ -13,7 +13,7 @@ export const useOrderStore = defineStore('order', {
         };
     },
     actions: {
-        setOrderToday(orders: OrdersRestaurantResponseInterface) {
+        setOrders(orders: OrdersRestaurantResponseInterface) {
             this.orders = [...orders.orders];
             this.current_page = orders.current_page;
             this.per_page = orders.per_page;
