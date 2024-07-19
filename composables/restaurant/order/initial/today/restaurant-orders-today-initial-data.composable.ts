@@ -3,5 +3,5 @@ import { useOrderStore } from '~/store/order';
 export const restaurantOrdersTodayInitialDataComposable = async (page: Number) => {
     const order = useOrderStore();
     const response = await orderRestaurantService.ordersToday(page);
-    order.setOrderToday(response);
+    order.setOrders(response);
 };

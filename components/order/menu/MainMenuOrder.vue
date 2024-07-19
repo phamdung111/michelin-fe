@@ -24,7 +24,7 @@ export default defineComponent({
                 name: 'Old Orders',
             },
             {
-                link: '/account/future',
+                link: '/order/future',
                 name: 'Future Orders',
             },
         ];
