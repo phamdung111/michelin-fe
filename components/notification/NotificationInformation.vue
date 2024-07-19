@@ -14,7 +14,7 @@ definePageMeta({
     middleware: ['auth'],
 });
 import { defineComponent } from 'vue';
-import { countOrdersTodayInitialDataComposable } from '~/composables/restaurant/order/initial/count-orders-today-initial-data.composable';
+import { restaurantOrdersTodayCountInitialDataComposable } from '~/composables/restaurant/order/initial/today/restaurant-orders-today-count-initial-data.composable';
 import { useOrderStore } from '~/store/order';
 export default defineComponent({
     name: 'NotificationInformation',
@@ -34,7 +34,7 @@ export default defineComponent({
             }
         );
         onMounted(async () => {
-            await countOrdersTodayInitialDataComposable();
+            await restaurantOrdersTodayCountInitialDataComposable();
             countNotification.value = order.countOrderToday;
         });
         return {

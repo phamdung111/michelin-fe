@@ -58,7 +58,7 @@ import BaseTable from '../table/BaseTable.vue';
 
 import { useOrderStore } from '~/store/order';
 import { formatTimeToHourProvider } from '~/provider/format/date/format-time-to-hour.provider';
-import { ordersRestaurantInitialDataComposable } from '~/composables/restaurant/order/initial/orders-restaurant-initial-data.composable';
+import { restaurantOrdersTodayInitialDataComposable } from '~/composables/restaurant/order/initial/today/restaurant-orders-today-initial-data.composable';
 import { orderUpdateStatusComposable } from '~/composables/restaurant/order/update/status/order-update-status.composable';
 import { useUiStore } from '~/store/ui';
 export default defineComponent({
@@ -80,7 +80,7 @@ export default defineComponent({
         const statusChange = ref<Record<number, string>>({});
 
         const toPage = async (toPage: Number) => {
-            await ordersRestaurantInitialDataComposable(toPage);
+            await restaurantOrdersTodayInitialDataComposable(toPage);
             order.orders.forEach((restaurant) => {
                 restaurant.id in ordersStatus.value === false ? (ordersStatus.value[restaurant.id] = restaurant.status) : '';
             });
@@ -100,7 +100,7 @@ export default defineComponent({
 
         onMounted(async () => {
             let page = route.query.restaurant || 1;
-            await ordersRestaurantInitialDataComposable(Number(page));
+            await restaurantOrdersTodayInitialDataComposable(Number(page));
             order.orders.forEach((order) => {
                 ordersStatus.value[order.id] = order.status;
             });
