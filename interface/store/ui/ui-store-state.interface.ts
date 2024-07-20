@@ -1,3 +1,5 @@
+import type { NotificationDeleteInterface } from '~/interface/notification/notification-delete.interface';
+
 export interface uiStoreStateInterface {
     isOpenMenu: boolean;
     popup: {
@@ -5,8 +7,12 @@ export interface uiStoreStateInterface {
         component: any;
         props: any;
     };
-    isOpenNotification: {
+    notification: {
         status: string;
         message: string;
+    };
+    notificationDelete: {
+        itemDelete: NotificationDeleteInterface | null;
+        isDelete: boolean;
     };
 }

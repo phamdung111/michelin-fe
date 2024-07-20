@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MyInfo from './MyInfo.vue';
+import MyInfo from './my-info/MyInfo.vue';
 
 export default defineComponent({
     name: 'MainAccount',

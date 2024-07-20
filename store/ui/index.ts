@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia';
+import { string } from 'yup';
+import type { NotificationDeleteInterface } from '~/interface/notification/notification-delete.interface';
 import type { NotificationInterface } from '~/interface/notification/notification.interface';
 
 import type { uiStoreStateInterface } from '~/interface/store/ui/ui-store-state.interface';
@@ -12,9 +14,16 @@ export const useUiStore = defineStore('ui', {
                 component: '',
                 props: '',
             },
-            isOpenNotification: {
+            notification: {
                 status: '',
                 message: '',
+            },
+            notificationDelete: {
+                itemDelete: {
+                    name: '',
+                    id: 0
+                },
+                isDelete: false,
             },
         };
     },
@@ -41,12 +50,22 @@ export const useUiStore = defineStore('ui', {
             this.popup.props = '';
         },
         openNotification(notification: NotificationInterface) {
-            this.isOpenNotification.status = notification.status;
-            this.isOpenNotification.message = notification.message;
+            this.notification.status = notification.status;
+            this.notification.message = notification.message;
         },
         clearNotification() {
-            this.isOpenNotification.status = '';
-            this.isOpenNotification.message = '';
+            this.notification.status = '';
+            this.notification.message = '';
+        },
+        openNotificationDelete(itemDelete: NotificationDeleteInterface) {
+            this.notificationDelete.itemDelete = itemDelete;
+        },
+        deleteItemNotification() {
+            this.notificationDelete.isDelete = true;
+        },
+        clearNotificationDelete() {
+            this.notificationDelete.itemDelete = null;
+            this.notificationDelete.isDelete = false;
         },
     },
 });

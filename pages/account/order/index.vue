@@ -2,7 +2,7 @@
     <nuxt-layout name="account-layout">
         <template #title> Stays </template>
         <template #content>
-            <StaysAccount></StaysAccount>
+            <MyOrder />
         </template>
     </nuxt-layout>
 </template>
@@ -11,12 +11,12 @@
 import { defineComponent } from 'vue';
 import MainAccount from '~/components/account/MainAccount.vue';
 import NotificationOverlay from '~/components/notification/NotificationOverlay.vue';
-import StaysAccount from '~/components/account/StaysAccount.vue';
+import MyOrder from '~/components/account/order/MyOrder.vue';
 export default defineComponent({
     components: {
         MainAccount,
         NotificationOverlay,
-        StaysAccount,
+        MyOrder,
     },
     setup() {
         return {};

@@ -13,19 +13,19 @@
                 </div>
             </div>
         </div>
-        <NotificationOverlay />
+        <NotificationDeleteItem />
     </nuxt-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AccountMenu from '~/components/account/menu/AccountMenu.vue';
-import NotificationOverlay from '~/components/notification/NotificationOverlay.vue';
+import NotificationDeleteItem from '~/components/notification/NotificationDeleteItem.vue';
 export default defineComponent({
     name: 'AccountLayout',
     components: {
         AccountMenu,
-        NotificationOverlay,
+        NotificationDeleteItem,
     },
     setup() {
         return {};
