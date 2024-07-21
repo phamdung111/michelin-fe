@@ -20,8 +20,8 @@ export default defineComponent({
                 name: 'My Info',
             },
             {
-                link: '/account/stays',
-                name: 'Stays',
+                link: '/account/order',
+                name: 'Orders',
             },
             {
                 link: '/account/restaurants',

@@ -4,6 +4,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
     const auth = useAuthenticationStore();
 
     if (auth.access_token) {
-        authenticationComposable();
+        return authenticationComposable();
     }
 });

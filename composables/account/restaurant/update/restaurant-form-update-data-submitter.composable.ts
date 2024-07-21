@@ -12,5 +12,3 @@ export const restaurantFormUpdateDataSubmitterComposable = async () => {
     }
     return status;
 };
-
-

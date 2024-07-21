@@ -16,7 +16,7 @@
                             class="text-center"
                             :class="[
                                 { 'text-primaryOrange': item[key] === 'cancel' },
-                                { 'text-primaryYellow': item[key] === 'pending' },
+                                { 'text-primaryYellow': item[key] === 'booking' },
                                 { 'text-primaryBlue': item[key] === 'done' },
                             ]">
                             {{ item[key] }}

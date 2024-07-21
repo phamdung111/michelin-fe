@@ -1,4 +1,4 @@
-export interface restaurantOrderUpdateStatusInterface {
+export interface RestaurantOrderUpdateStatusInterface {
     orderId: number;
     status: string;
 }

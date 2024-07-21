@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-import type { restaurantFavoriteResponseInterface } from '~/interface/response/favorite/restaurant-favorite-response.interface';
+import type { AccountOrdersResponseInterface } from '~/interface/response/account/order/account-orders-response.interface';
+import type { RestaurantFavoriteResponseInterface } from '~/interface/response/favorite/restaurant-favorite-response.interface';
 
 import type { RestaurantsResponseInterface } from '~/interface/response/restaurant/restaurants-response.interface';
 import type { UserStoreStateInterface } from '~/interface/store/user/user-store-state.interface';
@@ -22,6 +23,13 @@ export const useUserStore = defineStore('user', {
                 total: 0,
             },
             favorites: [],
+            orders: {
+                orders: [],
+                current_page: 0,
+                last_page: 0,
+                per_page: 0,
+                total: 0,
+            },
         };
     },
     actions: {
@@ -53,8 +61,15 @@ export const useUserStore = defineStore('user', {
             this.restaurants.per_page = restaurants.per_page;
             this.restaurants.total = restaurants.total;
         },
-        setFavorites(favorites: restaurantFavoriteResponseInterface[]) {
+        setFavorites(favorites: RestaurantFavoriteResponseInterface[]) {
             this.favorites = [...favorites];
+        },
+        setOrders(orders: AccountOrdersResponseInterface) {
+            this.orders.orders = [...orders.orders];
+            this.orders.current_page = orders.current_page;
+            this.orders.last_page = orders.last_page;
+            this.orders.per_page = orders.per_page;
+            this.orders.total = orders.total;
         },
     },
 });

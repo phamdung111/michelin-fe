@@ -63,6 +63,7 @@ import { useUiStore } from '~/store/ui';
 import { restaurantFormUpdateData as form } from '../../../composables/account/restaurant/update/restaurant-form-update-data.composable';
 import { restaurantFormUpdateValidation as validate } from '../../../composables/account/restaurant/update/restaurant-form-update-validation.composable';
 import { restaurantFormUpdateDataSubmitterComposable } from '~/composables/account/restaurant/update/restaurant-form-update-data-submitter.composable';
+import { accountRestaurantInitialDataComposable } from '~/composables/account/restaurant/initial/account-restaurants-initial-data.composable';
 
 export default defineComponent({
     name: 'UpdateRestaurantForm',
@@ -72,7 +73,7 @@ export default defineComponent({
     },
     setup() {
         const ui = useUiStore();
-
+        const route = useRoute();
         const isMaximumFiles = ref(false);
         const isChange = ref(false);
         const restaurantSelected = ui.popup.props;
@@ -157,6 +158,9 @@ export default defineComponent({
                 for (const key of form.payload.keys()) {
                     form.payload.set(key, '');
                 }
+
+                let page = route.query.restaurants || 1;
+                await accountRestaurantInitialDataComposable(Number(page));
             }
         };
         onMounted(() => {

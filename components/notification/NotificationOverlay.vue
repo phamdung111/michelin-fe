@@ -2,9 +2,9 @@
     <div class="fixed top-[140px] w-screen z-notification" :class="isHidden ? 'hidden' : 'notification'">
         <div class="w-full flex justify-center">
             <h2
-                :class="ui.isOpenNotification.status === 'success' ? 'text-primaryGreen' : 'text-primaryOrange'"
+                :class="ui.notification.status === 'success' ? 'text-primaryGreen' : 'text-primaryOrange'"
                 class="text-[24px] font-semibold py-[50px] border px-[50px] rounded-md shadow-2xl">
-                {{ ui.isOpenNotification.message }}
+                {{ ui.notification.message }}
             </h2>
         </div>
     </div>
@@ -19,7 +19,7 @@ export default defineComponent({
         const ui = useUiStore();
         const isHidden = ref(true);
         watch(
-            () => ui.isOpenNotification.message,
+            () => ui.notification.message,
             (newValue: string | null) => {
                 if (newValue) {
                     isHidden.value = false;

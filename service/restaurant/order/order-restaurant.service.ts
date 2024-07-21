@@ -1,4 +1,4 @@
-import type { restaurantOrderUpdateStatusInterface } from '~/interface/request/restaurant/order/update/restaurant-order-update-status.interface';
+import type { RestaurantOrderUpdateStatusInterface } from '~/interface/request/restaurant/order/update/restaurant-order-update-status.interface';
 import type { OrdersRestaurantResponseInterface } from '~/interface/response/restaurant/order/orders-restaurant-response.interface';
 import { http } from '~/utils/http/http';
 
@@ -42,7 +42,7 @@ export const orderRestaurantService = Object.freeze({
         }
     },
 
-    update: async (payload: restaurantOrderUpdateStatusInterface): Promise<Boolean> => {
+    update: async (payload: RestaurantOrderUpdateStatusInterface): Promise<Boolean> => {
         try {
             const response = await http().post('api/auth/change-status', payload);
             return response.data;
