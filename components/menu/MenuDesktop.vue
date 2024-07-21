@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="py-5 border-y border-primaryColor3">
-                <div class="pb-[6px]">Restaurant</div>
+                <div @click.prevent="goTo('/restaurants')" class="pb-[6px]">Restaurant</div>
                 <div @click.prevent="goTo('/favorite')" class="pb-[6px]">Favorite</div>
                 <div @click.prevent="goTo('/order')" class="flex gap-2 items-center">
                     <span> Orders </span>

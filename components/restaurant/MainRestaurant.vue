@@ -2,8 +2,8 @@
     <div v-if="restaurant.restaurantSelected" class="w-full">
         <div class="pt-[40px] py-[20px] flex justify-center">
             <div class="max-w-[1200px] px-[24px] lg:px-[40px] w-full">
-                <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div v-for="image in restaurant.restaurantSelected.images" :key="image.image" class="basis-1/3">
+                <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div v-for="image in restaurant.restaurantSelected.images" :key="image.image">
                         <div class="w-full aspect-square">
                             <img class="w-full h-full object-cover" :src="image.image" alt="" />
                         </div>
@@ -19,17 +19,15 @@
                                 <span class="font-medium">Add to favorites</span>
                             </div>
                         </div>
-                        <div class="xl:w-1/3">
+                        <div v-if="restaurant.restaurantSelected.allow_booking" class="xl:w-1/3">
                             <div class="p-4 bg-primaryWhite shadow-lg">
                                 <h6 class="mb-3 font-medium text-[1rem]">Reserve a table</h6>
-                                <div>
-                                    <div class="p-4 border rounded-md flex justify-between">
-                                        <div class="h-[30px]">
-                                            <img class="object-cover h-full" src="@/assets/images/booking/Resy-Box-Logo-Red@3x.png" alt="" />
-                                        </div>
-                                        <div @click.prevent="openBooking()">
-                                            <BaseButton content="Book" :size="35" />
-                                        </div>
+                                <div class="p-4 border rounded-md flex justify-between">
+                                    <div class="h-[30px]">
+                                        <img class="object-cover h-full" src="@/assets/images/booking/Resy-Box-Logo-Red@3x.png" alt="" />
+                                    </div>
+                                    <div @click.prevent="openBooking()">
+                                        <BaseButton content="Book" :size="35" />
                                     </div>
                                 </div>
                             </div>

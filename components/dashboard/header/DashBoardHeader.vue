@@ -6,10 +6,10 @@
                 <div class="flex">
                     <div class="hidden lg:block">
                         <div class="flex items-center h-full font-medium text-[15px]">
-                            <div class="py-[6px] px-[22px]">
+                            <div @click.prevent="goTo('restaurants')" class="py-[6px] px-[22px] hover:cursor-pointer">
                                 <h2>Restaurants</h2>
                             </div>
-                            <div @click.prevent="goTo('favorite')" class="py-[6px] px-[22px]">
+                            <div @click.prevent="goTo('favorite')" class="py-[6px] px-[22px] hover:cursor-pointer">
                                 <h2>Favorite</h2>
                             </div>
                         </div>

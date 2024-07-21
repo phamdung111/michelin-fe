@@ -107,6 +107,8 @@ export default defineComponent({
                 form.payload.append(`image${index}`, file);
             });
             await restaurantFormDataSubmitterComposable();
+            inputFiles.value = null;
+            console.log(inputFiles.value);
         };
         return {
             inputFiles,

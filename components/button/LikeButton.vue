@@ -35,7 +35,7 @@ export default defineComponent({
         };
         onMounted(async () => {
             const response = await checkLikeRestaurantComposable(props.restaurantId);
-            isLike.value = response;
+            isLike.value = response!;
         });
         return {
             isLike,
