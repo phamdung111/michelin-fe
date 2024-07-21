@@ -1,6 +1,6 @@
 <template>
     <nuxt-layout name="account-layout">
-        <template #title> Stays </template>
+        <template #title> Orders </template>
         <template #content>
             <MyOrder />
         </template>

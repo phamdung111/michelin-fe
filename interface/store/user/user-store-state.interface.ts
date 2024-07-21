@@ -19,5 +19,11 @@ export interface UserStoreStateInterface {
         total: number;
     };
     favorites: RestaurantFavoriteResponseInterface[];
-    orders: AccountOrderResponseInterface[];
+    orders: {
+        orders: AccountOrderResponseInterface[];
+        current_page: number;
+        last_page: number;
+        per_page: number;
+        total: number;
+    };
 }

@@ -18,10 +18,10 @@
                             class="w-full h-[30px] bg-transparent"
                             :class="[
                                 { 'text-primaryOrange': ordersStatus[item.id] === 'cancel' },
-                                { 'text-primaryYellow': ordersStatus[item.id] === 'pending' },
+                                { 'text-primaryYellow': ordersStatus[item.id] === 'booking' },
                                 { 'text-primaryBlue': ordersStatus[item.id] === 'done' },
                             ]">
-                            <option :selected="item[key] === 'pending'" class="text-primaryColor" value="pending">pending</option>
+                            <option :selected="item[key] === 'booking'" class="text-primaryColor" value="booking">booking</option>
                             <option :selected="item[key] === 'done'" class="text-primaryColor" value="done">done</option>
                             <option :selected="item[key] === 'cancel'" class="text-primaryColor" value="cancel">cancel</option>
                         </select>
