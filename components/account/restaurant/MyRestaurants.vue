@@ -10,7 +10,7 @@
                     <h5>{{ restaurant.address }}</h5>
                     <h5>{{ restaurant.phone }}</h5>
                     <h5>Allow Booking: {{ restaurant.allow_booking }}</h5>
-                    <h5>{{ restaurant.description }}</h5>
+                    <h5 class="line-clamp-2">{{ restaurant.description }}</h5>
                     <h5
                         :class="[
                             { 'text-primaryYellow': restaurant.status === 'pending' },

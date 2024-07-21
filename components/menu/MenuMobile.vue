@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="pt-5 grid gap-2.5 py-5 border-y border-y-primaryColor5">
-            <div>
+            <div @click.prevent="goTo('restaurants')">
                 <span> Restaurants </span>
             </div>
             <div @click.prevent="goTo('favorite')">

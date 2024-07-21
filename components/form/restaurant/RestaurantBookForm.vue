@@ -79,8 +79,9 @@ export default defineComponent({
     setup() {
         const ui = useUiStore();
         const user = useUserStore();
-        const date = new Date();
-        const dateToday = date.toISOString().slice(0, 10);
+        const today = new Date();
+
+        const dateToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
         const restaurant = ui.popup.props;
         const countGuest = ref('2 Guests');
@@ -125,7 +126,6 @@ export default defineComponent({
             ui.closePopup();
         };
         return {
-            date,
             dateToday,
             hoursOption,
             hourOrder,

@@ -22,7 +22,7 @@ export default defineComponent({
         const restaurant = useRestaurantStore();
 
         onMounted(async () => {
-            await restaurantsInitialDataComposable();
+            await restaurantsInitialDataComposable(8, 1);
         });
         return {
             restaurant,
