@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="w-full">
+    <div v-if="user.orders.total">
+        <div class="w-full max-w-[1200px]">
             <div v-if="user.orders.orders.length" class="grid gap-2">
                 <div v-for="order in user.orders.orders" :key="order.id">
                     <MyOrderDetail :order="order" @changed="changed" />
@@ -11,7 +11,7 @@
                     <h4 class="text-[18px] px-2">Confirmed orders will show up here.</h4>
                 </div>
             </div>
-            <div class="mt-[40px]" v-else>
+            <div v-else>
                 <NotLogged />
             </div>
             <div class="mt-4 w-full flex justify-center">
@@ -39,6 +39,7 @@ export default defineComponent({
         const user = useUserStore();
         const page = ref(1);
         const router = useRouter();
+        const route = useRoute();
         const getPageUrl = async () => {
             router.push({ query: { page: page.value } });
             await accountOrderInitialDataComposable(page.value);
@@ -47,6 +48,7 @@ export default defineComponent({
             await accountOrderInitialDataComposable(page.value);
         };
         onMounted(async () => {
+            page.value = Number(route.query.page || 1);
             await accountOrderInitialDataComposable(page.value);
         });
 

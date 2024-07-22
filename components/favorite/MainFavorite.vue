@@ -1,6 +1,10 @@
 <template>
     <div v-if="user.favorites" class="flex w-full justify-center">
-        <div class="mt-[40px] max-w-[1200px] w-full">
+        <div class="max-w-[1200px] w-full">
+            <div class="pb-[30px] mb-[20px] border-b border-primaryColor3">
+                <h6 class="py-1.5 px-6 bg-[#222222] text-primaryWhite font-semibold rounded-md w-[150px]">Restaurants</h6>
+            </div>
+
             <div v-if="user.favorites.length">
                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
                     <div v-for="favorite in user.favorites" :key="favorite.id">
@@ -23,8 +27,8 @@
                     </div>
                 </div>
             </div>
-            <div v-else class="text-center">
-                <span>You have no favorites yet</span>
+            <div v-else class="text-center mt-[60px]">
+                <span class="font-medium text-[1.5rem]">You have no favorites yet</span>
             </div>
         </div>
     </div>

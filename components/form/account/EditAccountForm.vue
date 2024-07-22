@@ -5,7 +5,7 @@
                 <UserAvatar :size="150" />
                 <h2 class="text-[32px] font-medium truncate">{{ user.name }}</h2>
                 <label for="fileInput" class="text-[12px] text-primaryColor6">Edit</label>
-                <input @input="isSelectFile()" ref="fileInput" type="file" id="fileInput" style="display: none" accept="image/png, image/jpeg, image/jpg" />
+                <input @input="isSelectFile()" ref="fileInput" type="file" id="fileInput" style="display: none" accept="image/*" />
             </div>
             <div class="text-primaryColor6 md:pl-[30px]">
                 <h6 class="text-[14px]">About me</h6>
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div>
-            <div class="pb-[24px] border-b">
+            <div class="pb-[24px] border-b border-primaryColor4">
                 <h4 class="text-[22px] mb-[24px]">Name & Email</h4>
                 <div class="grid mb-4">
                     <span class="mb-2 text-primaryColor6 text-[14px]">Email address</span>
@@ -32,7 +32,7 @@
                     <input v-model="form.phone" class="border h-[45px] text-[14px] focus:outline-none rounded-md px-2" type="text" />
                 </div>
             </div>
-            <div class="py-[24px] border-b">
+            <div class="py-[24px] border-b border-primaryColor4">
                 <h4 class="text-[22px] mb-[24px]">Password</h4>
                 <div class="grid mb-4">
                     <span class="mb-2 text-primaryColor7 text-[14px]">Current Password</span>

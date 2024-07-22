@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full shadow-lg pb-4 rounded-lg border">
+    <div class="w-full shadow-2xl pb-4 rounded-lg border">
         <div class="w-full aspect-square">
             <slot name="image" />
         </div>

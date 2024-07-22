@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import type { NuxtPage } from 'nuxt/schema';
-import { authenticationComposable } from './composables/authentication/authentication-composable';
 
 export default defineNuxtConfig({
     devtools: { enabled: true },
@@ -33,5 +32,20 @@ export default defineNuxtConfig({
             },
         ],
     },
-    hooks: {},
+    hooks: {
+        'pages:extend'(pages) {
+            function setMiddleware(pages: NuxtPage[]) {
+                for (const page of pages) {
+                    if (page.name?.startsWith('admin')) {
+                        page.meta ||= {};
+                        page.meta.middleware = ['admin'];
+                    }
+                    if (page.children) {
+                        setMiddleware(page.children);
+                    }
+                }
+            }
+            setMiddleware(pages);
+        },
+    },
 });

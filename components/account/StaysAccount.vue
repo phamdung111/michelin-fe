@@ -4,7 +4,7 @@
             <h4 class="text-[18px] px-2">Confirmed stays will show up here.</h4>
         </div>
     </div>
-    <div class="mt-[40px]" v-else>
+    <div v-else>
         <NotLogged />
     </div>
 </template>

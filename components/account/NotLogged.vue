@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex justify-center">
+    <div class="w-full flex justify-center mt-[60px] text-[30px]">
         <h2>You are not logged in.</h2>
     </div>
 </template>

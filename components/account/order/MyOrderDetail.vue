@@ -13,13 +13,13 @@
                 {{ order.status }}
             </h6>
         </div>
-        <div v-if="order.status === 'booking'">
-            <div class="h-[40px]">
+        <div v-if="order.status === 'booking'" class="flex justify-end">
+            <div class="h-[40px] w-[150px]">
                 <BaseButton @click.prevent="cancelOrder(order.id)" content="cancel" bg-color="primaryOrange" />
             </div>
         </div>
-        <div v-if="order.status === 'cancel'">
-            <div class="h-[40px]">
+        <div v-if="order.status === 'cancel'" class="flex justify-end">
+            <div class="h-[40px] w-[150px]">
                 <BaseButton @click.prevent="bookAgain()" content="Book again" bg-color="primaryGreen" />
             </div>
         </div>

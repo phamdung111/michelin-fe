@@ -18,7 +18,7 @@
                         <div @click.prevent="toggleMenu()">
                             <NotificationInformation />
                         </div>
-                        <UserAvatar :size="40" />
+                        <UserAvatar @click="navigateTo('/account')" :size="40" />
                         <Icon
                             @click.prevent="toggleMenu()"
                             class="text-primaryColor"
@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import LogoIcon from '@/assets/icon/michelin-guide-logo-dark.svg';
+import LogoIcon from '~/assets/icon/michelin-guide-logo-dark.svg';
 import AppOverlay from '~/components/overlay/AppOverlay.vue';
 import NotificationInformation from '~/components/notification/NotificationInformation.vue';
 

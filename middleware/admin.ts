@@ -1,7 +1,11 @@
 import { useUserStore } from '~/store/user';
-export default defineNuxtRouteMiddleware((to, from) => {
+import { useUiStore } from '~/store/ui';
+import LoginForm from '~/components/form/login-form/LoginForm.vue';
+export default defineNuxtRouteMiddleware(async (to, from) => {
+    const ui = useUiStore();
     const user = useUserStore();
-    if (user.id !== 1) {
+    if (user.role !== 'admin') {
+        ui.openPopup(LoginForm);
         return navigateTo('/');
     }
 });
