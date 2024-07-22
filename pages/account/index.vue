@@ -16,6 +16,7 @@
 import { defineComponent } from 'vue';
 import MainAccount from '~/components/account/MainAccount.vue';
 import AccountMenu from '~/components/account/menu/AccountMenu.vue';
+
 export default defineComponent({
     components: {
         MainAccount,

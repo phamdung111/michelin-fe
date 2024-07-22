@@ -11,7 +11,6 @@
                 <slot name="content" />
             </div>
         </div>
-        <NotificationOverlay />
         <NotificationDeleteItem />
     </nuxt-layout>
 </template>

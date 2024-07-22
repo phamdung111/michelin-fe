@@ -10,9 +10,6 @@
 </template>
 
 <script lang="ts">
-definePageMeta({
-    middleware: ['auth'],
-});
 import { defineComponent } from 'vue';
 import { restaurantOrdersTodayCountInitialDataComposable } from '~/composables/restaurant/order/initial/today/restaurant-orders-today-count-initial-data.composable';
 import { useUserStore } from '~/store/user';

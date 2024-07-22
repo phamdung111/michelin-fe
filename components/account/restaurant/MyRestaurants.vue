@@ -1,24 +1,26 @@
 <template>
-    <div class="mt-5">
+    <div v-if="user.restaurants.total" class="mt-5">
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-2">
-            <div v-for="restaurant in user.restaurants.items" :key="restaurant.id" class="shadow-xl w-full border">
-                <div class="aspect-square w-full" style="aspect-ratio: 1/1">
-                    <img class="object-cover w-full h-full" :src="restaurant.images[0].image" alt="" />
-                </div>
-                <div class="text-[12px] font-medium px-1">
-                    <h4 class="text-[20px] font-bold mb-1">{{ restaurant.name }}</h4>
-                    <h5>{{ restaurant.address }}</h5>
-                    <h5>{{ restaurant.phone }}</h5>
-                    <h5>Allow Booking: {{ restaurant.allow_booking }}</h5>
-                    <h5 class="line-clamp-2">{{ restaurant.description }}</h5>
-                    <h5
-                        :class="[
-                            { 'text-primaryYellow': restaurant.status === 'pending' },
-                            { 'text-primaryBlue': restaurant.status === 'approved' },
-                            { 'text-primaryOrange': restaurant.status === 'reject' },
-                        ]">
-                        Status: {{ restaurant.status }}
-                    </h5>
+            <div v-for="restaurant in user.restaurants.items" :key="restaurant.id" class="shadow-xl w-full border flex flex-col justify-between">
+                <div>
+                    <div class="aspect-square w-full" style="aspect-ratio: 1/1">
+                        <img class="object-cover w-full h-full" :src="restaurant.images[0].image" alt="" />
+                    </div>
+                    <div class="text-[12px] font-medium px-1">
+                        <h4 class="text-[20px] font-bold mb-1">{{ restaurant.name }}</h4>
+                        <h5>{{ restaurant.address }}</h5>
+                        <h5>{{ restaurant.phone }}</h5>
+                        <h5>Allow Booking: {{ restaurant.allow_booking }}</h5>
+                        <h5 class="line-clamp-2">{{ restaurant.description }}</h5>
+                        <h5
+                            :class="[
+                                { 'text-primaryYellow': restaurant.status === 'pending' },
+                                { 'text-primaryBlue': restaurant.status === 'approved' },
+                                { 'text-primaryOrange': restaurant.status === 'reject' },
+                            ]">
+                            Status: {{ restaurant.status }}
+                        </h5>
+                    </div>
                 </div>
                 <div class="w-full flex justify-end mb-2 pr-2">
                     <div class="w-[150px] flex gap-2 justify-end">
@@ -31,6 +33,9 @@
         <div class="mt-4 w-full flex justify-center">
             <UPagination v-model="page" :page-count="user.restaurants.per_page" :total="user.restaurants.total" :max="10" show-last show-first :to="getPageUrl" />
         </div>
+    </div>
+    <div v-else class="mt-[60px] w-full text-center">
+        <h6 class="text-[30px]">You haven't any restaurant</h6>
     </div>
 </template>
 
@@ -66,7 +71,7 @@ export default defineComponent({
             ui.openNotificationDelete({ name: 'restaurant', id: restaurantId });
         };
         onMounted(async () => {
-            page.value = Number(route.query.restaurants || 1);
+            page.value = Number(route.query.page || 1);
 
             user.id ? await accountRestaurantInitialDataComposable(page.value) : '';
             totalPage.value = user.restaurants.last_page;

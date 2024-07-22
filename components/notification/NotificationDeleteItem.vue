@@ -1,5 +1,5 @@
 <template>
-    <div v-if="ui.notificationDelete.itemDelete?.name" class="fixed w-screen h-screen top-0 left-0">
+    <div v-if="ui.notificationDelete.itemDelete?.name" class="fixed w-screen h-screen top-0 left-0 z-notification">
         <div class="flex justify-center items-center w-full h-full">
             <div class="p-6 bg-primaryWhite rounded-lg shadow-lg border">
                 <h4>Are you want delete {{ ui.notificationDelete.itemDelete.name }} ?</h4>
