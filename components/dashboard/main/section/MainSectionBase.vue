@@ -1,5 +1,5 @@
 <template>
-    <div class="pt-[40px] py-[20px] w-full">
+    <div class="pt-[40px] py-[20px] w-full" v-if="items.length">
         <div class="w-[54px] h-[4px] bg-primaryOrange"></div>
         <div class="pt-6 text-[24px] font-medium mb-6">
             <slot name="title" />
@@ -19,7 +19,7 @@
                         <CardBase :item="item">
                             <template #image>
                                 <div class="relative w-full h-full">
-                                    <img class="w-full h-full object-cover" :src="item.images[0].image" alt="" />
+                                    <img class="w-full h-full object-cover" :src="item.avatar" alt="" />
                                     <div class="absolute top-2 right-2">
                                         <div class="w-[30px] aspect-square bg-primaryWhite rounded-full flex justify-center items-center">
                                             <LikeButton :size="20" :restaurantId="item.id" />
@@ -42,6 +42,7 @@
             </div>
         </div>
     </div>
+    
 </template>
 
 <script lang="ts">

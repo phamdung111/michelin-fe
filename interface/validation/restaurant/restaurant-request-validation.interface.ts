@@ -7,5 +7,7 @@ export interface RestaurantRequestValidationInterface {
     phone: BaseValidationInterface;
     description: BaseValidationInterface;
     allow_booking: BaseValidationInterface;
+    avatar: BaseValidationInterface;
     image0: BaseValidationInterface;
+    totalTables: BaseValidationInterface;
 }

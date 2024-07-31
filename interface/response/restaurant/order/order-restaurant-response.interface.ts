@@ -1,3 +1,4 @@
+import { avatar } from '@nuxt/ui';
 export interface OrderRestaurantResponseInterface {
     id: number;
     guests: number;
@@ -7,7 +8,8 @@ export interface OrderRestaurantResponseInterface {
         id: number;
         name: string;
         address: string;
-        images: string[];
+        phone: string;
+        avatar: string;
     };
     userOrdered: {
         id: number;

@@ -11,15 +11,20 @@
             </div>
         </div>
         <div class="pt-5 grid gap-2.5 py-5 border-y border-y-primaryColor5">
-            <div @click.prevent="goTo('restaurants')">
-                <span> Restaurants </span>
+            <div @click.prevent="goTo(`${ROUTE.APP.RESTAURANTS}`)">
+                <span> {{ MENU.MAIN.RESTAURANT }} </span>
             </div>
-            <div @click.prevent="goTo('favorite')">
-                <span> Favorite </span>
+            <div @click.prevent="goTo(`${ROUTE.APP.FAVORITE}`)">
+                <span> {{ MENU.MAIN.FAVORITE }} </span>
             </div>
-            <div @click.prevent="goTo('order')" class="flex gap-2">
-                <span> Orders </span>
-                <NotificationInformation />
+            <div v-if="user.isOwn" @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.MY_RESTAURANT}`)">
+                <span> {{ MENU.OWN_RESTAURANT.MY_RESTAURANT }} </span>
+            </div>
+            <div v-if="user.isOwn" @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.ORDERS}`)">
+                <span> {{ MENU.OWN_RESTAURANT.ORDER }} </span>
+            </div>
+            <div v-if="user.isManager" @click.prevent="goTo(`${ROUTE.MANAGER_RESTAURANT.ORDERS}`)">
+                <span> {{ MENU.MANAGER_RESTAURANT.ORDERS }} </span>
             </div>
             <div>
                 <span> Contact us </span>
@@ -39,6 +44,8 @@ import RegisterForm from '../form/register-form/RegisterForm.vue';
 import NotificationInformation from '../notification/NotificationInformation.vue';
 import { useUserStore } from '~/store/user';
 import { logoutSubmitter } from '~/composables/logout/logout-submitter.composable';
+import { MENU } from '~/constant/menu/menu.constant';
+import { ROUTE } from '~/constant/route.constant';
 export default defineComponent({
     name: 'MenuMobile',
     components: {
@@ -69,6 +76,8 @@ export default defineComponent({
             openPopupRegister,
             goTo,
             logout,
+            MENU,
+            ROUTE,
         };
     },
 });

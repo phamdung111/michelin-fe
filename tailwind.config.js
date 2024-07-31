@@ -27,7 +27,8 @@ export default {
             },
             zIndex: {
                 menu: '10',
-                notification: '50',
+                notification: '30',
+                hover_item: '40',
             },
             aspectRatio: {
                 square: '1/1',

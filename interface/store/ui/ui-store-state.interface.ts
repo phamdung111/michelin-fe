@@ -11,6 +11,10 @@ export interface uiStoreStateInterface {
         status: string;
         message: string;
     };
+    notFound: {
+        item: string;
+        message: string;
+    };
     notificationDelete: {
         itemDelete: NotificationDeleteInterface | null;
         isDelete: boolean;

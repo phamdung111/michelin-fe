@@ -3,6 +3,9 @@
         <div class="pt-[40px] py-[20px] flex justify-center">
             <div class="max-w-[1200px] px-[24px] lg:px-[40px] w-full">
                 <div class="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div>
+                        <img class="w-full h-full object-cover" :src="restaurant.restaurantSelected.avatar" alt="" />
+                    </div>
                     <div v-for="image in restaurant.restaurantSelected.images" :key="image.image">
                         <div class="w-full aspect-square">
                             <img class="w-full h-full object-cover" :src="image.image" alt="" />
@@ -14,8 +17,11 @@
                         <div class="xl:w-2/3 border-b border-primaryColor6 pb-4 mb-[40px]">
                             <h2 class="text-[26px] font-semibold mb-[13px]">{{ restaurant.restaurantSelected.name }}</h2>
                             <h2>{{ restaurant.restaurantSelected.address }}</h2>
-                            <div class="mt-[30px] flex items-center gap-2">
-                                <LikeButton :restaurant-id="restaurant.restaurantSelected.id" />
+                            <div class="mt-[30px] flex items-center gap-3">
+                                <div class="flex justify-center items-center">
+                                    <LikeButton @like="likeRestaurant()" @un-like="unLikeRestaurant()" :restaurant-id="restaurant.restaurantSelected.id" />
+                                    {{ restaurant.restaurantSelected.countLike }}
+                                </div>
                                 <span class="font-medium">Add to favorites</span>
                             </div>
                         </div>
@@ -57,6 +63,9 @@
             </div>
         </div>
     </div>
+    <div v-else class="mt-[30px]">
+        <h6 class="text-center">Not Found</h6>
+    </div>
 </template>
 
 <script lang="ts">
@@ -78,12 +87,22 @@ export default defineComponent({
     setup() {
         const ui = useUiStore();
         const restaurant = useRestaurantStore();
+        const likeRestaurant = () => {
+            restaurant.restaurantSelected!.countLike += 1;
+        };
+        const unLikeRestaurant = () => {
+            console.log('unlike');
+
+            restaurant.restaurantSelected!.countLike -= 1;
+        };
         const openBooking = () => {
             ui.openPopupData(RestaurantBookForm, restaurant.restaurantSelected);
         };
         return {
             restaurant,
             openBooking,
+            likeRestaurant,
+            unLikeRestaurant,
         };
     },
 });

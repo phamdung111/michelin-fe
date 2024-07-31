@@ -1,13 +1,12 @@
 <template>
-    <div>
-        <img :style="{ width: `${size}px`, height: `${size}px` }" class="rounded-full border border-primaryColor1" :src="user.id ? user.avatar : defaultAvatar" alt="" />
+    <div v-if="avatarLink || user.avatar">
+        <img :style="{ width: `${size}px`, height: `${size}px` }" class="rounded-full border border-primaryColor1" :src="!avatarLink ? user.avatar : avatarLink" alt="" />
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useUserStore } from '~/store/user';
-import defaultAvatar from '@/assets/images/michelin-default-profile-image.png';
 export default defineComponent({
     name: 'UserAvatar',
     props: {
@@ -15,23 +14,20 @@ export default defineComponent({
             type: Number,
             default: 40,
         },
+        avatarLink: {
+            type: String,
+            default: null,
+        },
     },
-    setup() {
-        let user = useUserStore();
-        watch(
-            () => user.isUpdateUser,
-            () => {
-                if (user.isUpdateUser === true) {
-                    user = useUserStore();
-                }
-            }
-        );
+    setup(props) {
+        const user = useUserStore();
+        const avatar = ref('');
+        !props.avatarLink ? (avatar.value = user.avatar) : (avatar.value = props.avatarLink);
+
         return {
             user,
-            defaultAvatar,
+            avatar,
         };
     },
 });
 </script>
-
-<style scoped></style>
