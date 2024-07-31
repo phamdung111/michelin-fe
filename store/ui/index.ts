@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { string } from 'yup';
+import type { NotFoundInterface } from '~/interface/not-found/not-found.interface';
 import type { NotificationDeleteInterface } from '~/interface/notification/notification-delete.interface';
 import type { NotificationInterface } from '~/interface/notification/notification.interface';
 
@@ -18,10 +19,14 @@ export const useUiStore = defineStore('ui', {
                 status: '',
                 message: '',
             },
+            notFound: {
+                item: '',
+                message: '',
+            },
             notificationDelete: {
                 itemDelete: {
                     name: '',
-                    id: 0
+                    id: 0,
                 },
                 isDelete: false,
             },
@@ -66,6 +71,10 @@ export const useUiStore = defineStore('ui', {
         clearNotificationDelete() {
             this.notificationDelete.itemDelete = null;
             this.notificationDelete.isDelete = false;
+        },
+        addNotFoundItem(notFound: NotFoundInterface) {
+            this.notFound.item = notFound.item;
+            this.notFound.message = notFound.message;
         },
     },
 });

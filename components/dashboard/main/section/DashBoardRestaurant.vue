@@ -1,9 +1,14 @@
 <template>
-    <MainSectionBase v-if="restaurant.restaurants.length > 0" :items="restaurant.restaurants" :ability-like="true">
-        <template #title>
-            <h2>Restaurants</h2>
-        </template>
-    </MainSectionBase>
+    <div v-if="restaurant.total">
+        <MainSectionBase :items="restaurant.restaurants" :ability-like="true">
+            <template #title>
+                <h2>Restaurants</h2>
+            </template>
+        </MainSectionBase>
+    </div>
+    <div v-else class="text-center">
+        <h2>No Data</h2>
+    </div>
 </template>
 
 <script lang="ts">
@@ -21,7 +26,7 @@ export default defineComponent({
     setup() {
         const restaurant = useRestaurantStore();
 
-        onMounted(async () => {
+        onBeforeMount(async () => {
             await restaurantsInitialDataComposable(8, 1);
         });
         return {

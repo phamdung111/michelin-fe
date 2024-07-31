@@ -10,37 +10,49 @@
                 :total="order.total"
                 @to-page="toPage">
                 <template #default="{ item }">
-                    <td v-for="key in Object.keys(item)" :key="key">
+                    <td v-for="key in Object.keys(item)" :key="key" :class="key === 'id' ? 'hidden' : ''">
                         <select
                             v-model="ordersStatus[item.id]"
                             @change.prevent="setStatusRestaurant($event, Number(item.id))"
                             v-if="key === 'status'"
-                            class="w-full h-[30px] bg-transparent"
+                            class="w-full h-[30px] bg-transparent focus:outline-none"
                             :class="[
                                 { 'text-primaryOrange': ordersStatus[item.id] === 'cancel' },
                                 { 'text-primaryYellow': ordersStatus[item.id] === 'booking' },
-                                { 'text-primaryBlue': ordersStatus[item.id] === 'done' },
+                                { 'text-primaryBlue': ordersStatus[item.id] === 'serving' },
+                                { 'text-primaryColor3': ordersStatus[item.id] === 'done' },
                             ]">
                             <option :selected="item[key] === 'booking'" class="text-primaryColor" value="booking">booking</option>
                             <option :selected="item[key] === 'done'" class="text-primaryColor" value="done">done</option>
+                            <option :selected="item[key] === 'serving'" class="text-primaryColor" value="serving">serving</option>
                             <option :selected="item[key] === 'cancel'" class="text-primaryColor" value="cancel">cancel</option>
                         </select>
                         <h2 v-else-if="key === 'order_time'" class="font-bold text-[20px] text-center text-primaryOrange">{{ formatTimeToHourProvider(item[key]) }}</h2>
                         <h2 v-else-if="key === 'guests'" class="font-bold text-center">{{ item[key] }}</h2>
-                        <div v-else-if="key === 'restaurant'" class="font-bold text-center">
+                        <div v-else-if="key === 'restaurant'" class="font-bold text-center relative group">
                             <div class="flex items-center gap-1">
-                                <img class="rounded-full w-[30px] h-[30px]" :src="item[key].images[0]" alt="" />
+                                <img class="rounded-full w-[30px] h-[30px]" :src="item[key].avatar" alt="" />
                                 <h6>{{ item[key].name }}</h6>
                             </div>
+                            <div class="absolute left-[50px] top-[-10px] bg-primaryWhite shadow-xl border text-left p-2 hidden group-hover:block z-hover_item rounded-lg">
+                                <div>
+                                    <span>Address: {{ item[key].address }}</span>
+                                </div>
+                                <span>Phone: {{ item[key].phone }}</span>
+                            </div>
                         </div>
-                        <div v-else-if="key === 'id'"></div>
-                        <div v-else-if="key === 'userOrdered'" class="font-bold text-center">
+                        <div v-else-if="key === 'id'" class="hidden"></div>
+                        <div v-else-if="key === 'userOrdered'" class="font-bold text-center relative group">
                             <div class="flex items-center gap-1">
                                 <img class="rounded-full w-[40px] h-[40px]" :src="item[key].avatar" alt="" />
                                 <h6>{{ item[key].name }}</h6>
                             </div>
+                            <div
+                                v-if="item[key].phone"
+                                class="absolute right-[50px] top-[-10px] bg-primaryWhite shadow-xl border text-left p-2 hidden group-hover:block z-hover_item rounded-lg">
+                                <span>Phone: {{ item[key].phone }}</span>
+                            </div>
                         </div>
-
                         <h2 v-else>{{ item[key] }}</h2>
                     </td>
                 </template>
@@ -58,9 +70,9 @@ import BaseTable from '../table/BaseTable.vue';
 
 import { useOrderStore } from '~/store/order';
 import { formatTimeToHourProvider } from '~/provider/format/date/format-time-to-hour.provider';
-import { restaurantOrdersTodayInitialDataComposable } from '~/composables/restaurant/order/initial/today/restaurant-orders-today-initial-data.composable';
 import { orderUpdateStatusComposable } from '~/composables/restaurant/order/update/status/order-update-status.composable';
 import { useUiStore } from '~/store/ui';
+import { ownRestaurantOrdersTodayInitialDataComposable } from '~/composables/own-restaurant/order/initial/time-order/today/own-restaurant-orders-today-initial-data.composable';
 export default defineComponent({
     name: 'OrderToday',
     props: {
@@ -80,7 +92,7 @@ export default defineComponent({
         const statusChange = ref<Record<number, string>>({});
 
         const toPage = async (toPage: Number) => {
-            await restaurantOrdersTodayInitialDataComposable(toPage);
+            await ownRestaurantOrdersTodayInitialDataComposable(toPage);
             order.orders.forEach((restaurant) => {
                 restaurant.id in ordersStatus.value === false ? (ordersStatus.value[restaurant.id] = restaurant.status) : '';
             });
@@ -98,9 +110,9 @@ export default defineComponent({
             }
         };
 
-        onMounted(async () => {
+        onBeforeMount(async () => {
             let page = route.query.restaurant || 1;
-            await restaurantOrdersTodayInitialDataComposable(Number(page));
+            await ownRestaurantOrdersTodayInitialDataComposable(Number(page));
             order.orders.forEach((order) => {
                 ordersStatus.value[order.id] = order.status;
             });

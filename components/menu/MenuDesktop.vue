@@ -11,15 +11,20 @@
                     <div @click.prevent="logout()" class="pb-[6px]">Logout</div>
                 </div>
             </div>
-            <div class="py-5 border-y border-primaryColor3">
-                <div @click.prevent="goTo('/restaurants')" class="pb-[6px]">Restaurant</div>
-                <div @click.prevent="goTo('/favorite')" class="pb-[6px]">Favorite</div>
-                <div @click.prevent="goTo('/order')" class="flex gap-2 items-center">
-                    <span> Orders </span>
-                    <NotificationInformation />
+            <div class="grid gap-2 py-5 border-y border-primaryColor3">
+                <div @click.prevent="goTo(`${ROUTE.APP.RESTAURANTS}`)">Restaurant</div>
+                <div @click.prevent="goTo('/favorite')">Favorite</div>
+                <div v-if="user.isOwn" @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.MY_RESTAURANT}`)">
+                    <span> {{ MENU.OWN_RESTAURANT.MY_RESTAURANT }} </span>
                 </div>
-                <div class="pb-[6px]">Contact us</div>
-                <div class="pb-[6px]">Events</div>
+                <div v-if="user.isOwn" @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.ORDERS}`)">
+                    <span> {{ MENU.OWN_RESTAURANT.ORDER }} </span>
+                </div>
+                <div v-if="user.isManager" @click.prevent="goTo(`${ROUTE.MANAGER_RESTAURANT.ORDERS}`)">
+                    <span> {{ MENU.MANAGER_RESTAURANT.ORDERS }} </span>
+                </div>
+                <div>Contact us</div>
+                <div>Events</div>
             </div>
             <div class="flex items-center gap-2 pt-4">
                 <Icon class="text-primaryOrange" name="material-symbols-light:location-on-rounded" />
@@ -36,6 +41,8 @@ import RegisterForm from '../form/register-form/RegisterForm.vue';
 import { useUiStore } from '~/store/ui';
 import { useUserStore } from '~/store/user';
 import { logoutSubmitter } from '~/composables/logout/logout-submitter.composable';
+import { MENU } from '~/constant/menu/menu.constant';
+import { ROUTE } from '~/constant/route.constant';
 export default defineComponent({
     name: 'MenuDesktop',
     setup() {
@@ -50,7 +57,7 @@ export default defineComponent({
             ui.closeMenu();
         };
         const goTo = (router: string) => {
-            navigateTo(router);
+            navigateTo(`/${router}`);
             ui.closeMenu();
         };
         const logout = async () => {
@@ -62,6 +69,8 @@ export default defineComponent({
             openPopupRegister,
             goTo,
             logout,
+            MENU,
+            ROUTE,
         };
     },
 });

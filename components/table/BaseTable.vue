@@ -3,8 +3,8 @@
         <table class="w-full overflow-hidden">
             <thead class="bg-primaryGreen">
                 <tr>
-                    <th v-for="header in headers" :key="header.title" style="text-align: center">
-                        <span v-if="header.title === 'ID'"></span>
+                    <th v-for="header in headers" :key="header.title" :class="header.title === 'ID' ? 'hidden' : ''" style="text-align: center">
+                        <span v-if="header.title === 'ID'" class="w-0"></span>
                         <span v-else>
                             {{ header.title }}
                         </span>
@@ -14,20 +14,20 @@
             <tbody v-if="mapData.length" class="text-[13px]">
                 <tr v-for="(item, index) in mapData" :key="index" class="relative py-1 border-b">
                     <slot :item="item">
-                        <td v-for="(cell, i) in item" :key="i">
-                            {{ cell }}
+                        <td v-for="(cell, index) in item" :key="index">
+                            <span>{{ cell }}</span>
                         </td>
                     </slot>
                 </tr>
             </tbody>
             <tbody v-else class="w-full text-center h-min-[300px]">
-                <tr>
-                    <td class="py-[40px]" style="text-align: center">No data</td>
+                <tr class="h-full">
+                    <td :colspan="headers.length" class="text-center h-full">No Data</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div class="mt-2 w-full flex justify-center">
+    <div class="mt-4 w-full flex justify-center">
         <UPagination v-model="page" :page-count="perPage" :total="total" :max="10" show-last show-first :to="getPageUrl" />
     </div>
 </template>

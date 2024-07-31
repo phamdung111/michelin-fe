@@ -25,7 +25,15 @@ export const restaurantFormValidation = reactive<RestaurantRequestValidationInte
         isFailed: false,
         message: '',
     },
+    avatar: {
+        isFailed: false,
+        message: '',
+    },
     image0: {
+        isFailed: false,
+        message: '',
+    },
+    totalTables: {
         isFailed: false,
         message: '',
     },

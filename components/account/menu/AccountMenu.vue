@@ -23,10 +23,6 @@ export default defineComponent({
                 link: '/account/order',
                 name: 'Orders',
             },
-            {
-                link: '/account/restaurants',
-                name: 'Restaurants',
-            },
         ];
         return {
             defaultMenu,

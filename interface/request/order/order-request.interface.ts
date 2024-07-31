@@ -1,5 +1,6 @@
 export interface OrderRequestInterface {
-    restaurantId: number;
+    tableId: number | null;
+    roomId: number | null;
     time: string;
     guests: number;
 }

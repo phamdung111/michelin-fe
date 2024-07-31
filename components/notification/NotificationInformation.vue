@@ -11,9 +11,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { restaurantOrdersTodayCountInitialDataComposable } from '~/composables/restaurant/order/initial/today/restaurant-orders-today-count-initial-data.composable';
+
 import { useUserStore } from '~/store/user';
 import { useOrderStore } from '~/store/order';
+import { ownRestaurantCountOrdersInitialComposable } from '~/composables/own-restaurant/order/initial/time-order/today/own-restaurant-count-orders-initial.composable';
 export default defineComponent({
     name: 'NotificationInformation',
     props: {
@@ -34,7 +35,7 @@ export default defineComponent({
         );
         onMounted(async () => {
             if (user.id) {
-                await restaurantOrdersTodayCountInitialDataComposable();
+                await ownRestaurantCountOrdersInitialComposable();
                 countNotification.value = order.countOrderToday;
             }
         });

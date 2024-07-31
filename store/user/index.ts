@@ -32,6 +32,17 @@ export const useUserStore = defineStore('user', {
             },
         };
     },
+    getters: {
+        isUser: (state) => {
+            return state.role === 'user';
+        },
+        isOwn: (state) => {
+            return state.role === 'own';
+        },
+        isManager: (state) => {
+            return state.role === 'manager';
+        },
+    },
     actions: {
         setUser(user: UserStoreStateInterface) {
             this.id = user.id;
@@ -55,11 +66,17 @@ export const useUserStore = defineStore('user', {
         },
         setRestaurants(restaurants: RestaurantsResponseInterface) {
             this.restaurants.items = [...restaurants.items];
-            this.restaurants.items = restaurants.items;
             this.restaurants.current_page = restaurants.current_page;
             this.restaurants.last_page = restaurants.last_page;
             this.restaurants.per_page = restaurants.per_page;
             this.restaurants.total = restaurants.total;
+        },
+        clearRestaurants() {
+            this.restaurants.items = [];
+            this.restaurants.current_page = 0;
+            this.restaurants.last_page = 0;
+            this.restaurants.per_page = 0;
+            this.restaurants.total = 0;
         },
         setFavorites(favorites: RestaurantFavoriteResponseInterface[]) {
             this.favorites = [...favorites];
