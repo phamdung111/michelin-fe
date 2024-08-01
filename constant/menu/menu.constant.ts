@@ -6,7 +6,7 @@ export const MENU = Object.freeze({
     },
     OWN_RESTAURANT: {
         MY_RESTAURANT: 'My restaurants',
-        ORDER: 'All orders restaurants',
+        ORDER: 'Orders restaurants',
     },
     MANAGER_RESTAURANT: {
         ORDERS: 'Orders Today',

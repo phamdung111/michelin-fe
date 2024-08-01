@@ -15,7 +15,7 @@
                             v-model="ordersStatus[item.id]"
                             @change.prevent="setStatusRestaurant($event, Number(item.id))"
                             v-if="key === 'status'"
-                            class="w-full h-[30px] bg-transparent focus:outline-none"
+                            class="w-full h-[30px] text-center bg-transparent focus:outline-none"
                             :class="[
                                 { 'text-primaryOrange': ordersStatus[item.id] === 'cancel' },
                                 { 'text-primaryYellow': ordersStatus[item.id] === 'booking' },
@@ -27,19 +27,21 @@
                             <option :selected="item[key] === 'serving'" class="text-primaryColor" value="serving">serving</option>
                             <option :selected="item[key] === 'cancel'" class="text-primaryColor" value="cancel">cancel</option>
                         </select>
-                        <h2 v-else-if="key === 'order_time'" class="font-bold text-[20px] text-center text-primaryOrange">{{ formatTimeToHourProvider(item[key]) }}</h2>
+                        <h2 v-else-if="key === 'order_time'" class="font-bold text-[16px] text-center text-primaryOrange">{{ formatTimeToHourProvider(item[key]) }}</h2>
                         <h2 v-else-if="key === 'guests'" class="font-bold text-center">{{ item[key] }}</h2>
-                        <div v-else-if="key === 'restaurant'" class="font-bold text-center relative group">
-                            <div class="flex items-center gap-1">
-                                <img class="rounded-full w-[30px] h-[30px]" :src="item[key].avatar" alt="" />
-                                <h6>{{ item[key].name }}</h6>
-                            </div>
-                            <div class="absolute left-[50px] top-[-10px] bg-primaryWhite shadow-xl border text-left p-2 hidden group-hover:block z-hover_item rounded-lg">
-                                <div>
-                                    <span>Address: {{ item[key].address }}</span>
+                        <div v-else-if="key === 'restaurant'" class="font-bold text-center relative group hover:cursor-pointer">
+                            <nuxt-link :to="`/restaurant/${item[key].id}`" target="_blank">
+                                <div class="flex items-center gap-1">
+                                    <img class="rounded-full w-[30px] h-[30px]" :src="item[key].avatar" alt="" />
+                                    <h6>{{ item[key].name }}</h6>
                                 </div>
-                                <span>Phone: {{ item[key].phone }}</span>
-                            </div>
+                                <div class="absolute left-[50px] top-[-10px] bg-primaryWhite shadow-xl border text-left p-2 hidden group-hover:block z-hover_item rounded-lg">
+                                    <div>
+                                        <span>Address: {{ item[key].address }}</span>
+                                    </div>
+                                    <span>Phone: {{ item[key].phone }}</span>
+                                </div>
+                            </nuxt-link>
                         </div>
                         <div v-else-if="key === 'id'" class="hidden"></div>
                         <div v-else-if="key === 'userOrdered'" class="font-bold text-center relative group">
@@ -72,7 +74,6 @@ import { useOrderStore } from '~/store/order';
 import { formatTimeToHourProvider } from '~/provider/format/date/format-time-to-hour.provider';
 import { orderUpdateStatusComposable } from '~/composables/restaurant/order/update/status/order-update-status.composable';
 import { useUiStore } from '~/store/ui';
-import { ownRestaurantOrdersTodayInitialDataComposable } from '~/composables/own-restaurant/order/initial/time-order/today/own-restaurant-orders-today-initial-data.composable';
 export default defineComponent({
     name: 'OrderToday',
     props: {
@@ -80,11 +81,15 @@ export default defineComponent({
             type: Array as PropType<String[]>,
             default: [],
         },
+        api: {
+            type: Function,
+            default: '',
+        },
     },
     components: {
         BaseTable,
     },
-    setup() {
+    setup(props) {
         const ui = useUiStore();
         const order = useOrderStore();
         const route = useRoute();
@@ -92,7 +97,7 @@ export default defineComponent({
         const statusChange = ref<Record<number, string>>({});
 
         const toPage = async (toPage: Number) => {
-            await ownRestaurantOrdersTodayInitialDataComposable(toPage);
+            await props.api(toPage);
             order.orders.forEach((restaurant) => {
                 restaurant.id in ordersStatus.value === false ? (ordersStatus.value[restaurant.id] = restaurant.status) : '';
             });
@@ -112,7 +117,7 @@ export default defineComponent({
 
         onBeforeMount(async () => {
             let page = route.query.restaurant || 1;
-            await ownRestaurantOrdersTodayInitialDataComposable(Number(page));
+            await props.api(Number(page));
             order.orders.forEach((order) => {
                 ordersStatus.value[order.id] = order.status;
             });

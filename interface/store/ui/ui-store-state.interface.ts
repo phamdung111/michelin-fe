@@ -2,6 +2,7 @@ import type { NotificationDeleteInterface } from '~/interface/notification/notif
 
 export interface uiStoreStateInterface {
     isOpenMenu: boolean;
+    isLoading: boolean;
     popup: {
         isOpenPopup: boolean;
         component: any;

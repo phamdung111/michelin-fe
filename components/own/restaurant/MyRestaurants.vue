@@ -50,7 +50,7 @@ import { useUiStore } from '~/store/ui';
 import BaseButton from '~/components/button/BaseButton.vue';
 import UpdateRestaurantForm from '~/components/form/restaurant/update/UpdateRestaurantForm.vue';
 import { ownDeleteRestaurantComposable } from '~/composables/own-restaurant/restaurant/delete/account-delete-restaurant.composable';
-import { ROUTE } from '~/constant/route.constant';
+import { ROUTE } from '~/constant/route/route.constant';
 export default defineComponent({
     name: 'MyRestaurant',
     components: {

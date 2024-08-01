@@ -6,9 +6,6 @@
             </template>
         </MainSectionBase>
     </div>
-    <div v-else class="text-center">
-        <h2>No Data</h2>
-    </div>
 </template>
 
 <script lang="ts">
@@ -17,6 +14,7 @@ import MainSectionBase from './MainSectionBase.vue';
 import BaseButton from '~/components/button/BaseButton.vue';
 import { restaurantsInitialDataComposable } from '~/composables/restaurant/initial/restaurants-initial-data.composable';
 import { useRestaurantStore } from '~/store/restaurant';
+import { useUiStore } from '~/store/ui';
 export default defineComponent({
     name: 'DashboardRestaurant',
     components: {
@@ -24,12 +22,14 @@ export default defineComponent({
         BaseButton,
     },
     setup() {
+        const ui = useUiStore();
         const restaurant = useRestaurantStore();
 
         onBeforeMount(async () => {
             await restaurantsInitialDataComposable(8, 1);
         });
         return {
+            ui,
             restaurant,
         };
     },

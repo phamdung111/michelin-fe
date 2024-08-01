@@ -2,6 +2,8 @@ export interface AccountOrderResponseInterface {
     id: number;
     time: Date;
     status: string;
+    tableNumber: number | null;
+    roomNumber: number | null;
     restaurant: AccountOrderRestaurantResponseInterface[];
 }
 
@@ -10,5 +12,5 @@ interface AccountOrderRestaurantResponseInterface {
     name: string;
     phone: string;
     address: string;
-    image: string[];
+    avatar: string;
 }
