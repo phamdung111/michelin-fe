@@ -101,7 +101,7 @@ import { restaurantFormValidation as validate } from '~/composables/account/rest
 import InputValidation from '~/components/validation/input/InputValidation.vue';
 import { useUiStore } from '~/store/ui';
 import { useUserStore } from '~/store/user';
-import { ROUTE } from '~/constant/route.constant';
+import { ROUTE } from '~/constant/route/route.constant';
 export default defineComponent({
     name: 'RestaurantForm',
     components: {

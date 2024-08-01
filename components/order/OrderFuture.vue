@@ -21,13 +21,15 @@
                             ]">
                             {{ item[key] }}
                         </h6>
-                        <h6 v-else-if="key === 'order_time'" class="font-bold text-[20px] text-center text-primaryOrange">{{ item[key] }}</h6>
+                        <h6 v-else-if="key === 'order_time'" class="font-bold text-[16px] text-center text-primaryOrange">{{ item[key] }}</h6>
                         <h6 v-else-if="key === 'guests'" class="font-bold text-center">{{ item[key] }}</h6>
-                        <div v-else-if="key === 'restaurant'" class="font-bold text-center">
-                            <div class="flex items-center gap-1">
-                                <img class="rounded-full w-[30px] h-[30px]" :src="item[key].avatar" alt="" />
-                                <h6>{{ item[key].name }}</h6>
-                            </div>
+                        <div v-else-if="key === 'restaurant'" class="font-bold text-center hover:cursor-pointer">
+                            <nuxt-link :to="`/restaurant/${item[key].id}`" target="_blank">
+                                <div class="flex items-center gap-1">
+                                    <img class="rounded-full w-[30px] h-[30px]" :src="item[key].avatar" alt="" />
+                                    <h6>{{ item[key].name }}</h6>
+                                </div>
+                            </nuxt-link>
                         </div>
                         <div v-else-if="key === 'userOrdered'" class="font-bold text-center">
                             <div class="flex items-center gap-1">
@@ -50,17 +52,22 @@
 import { defineComponent } from 'vue';
 import BaseTable from '../table/BaseTable.vue';
 import { useOrderStore } from '~/store/order';
-import { ownRestaurantOrdersFutureInitialDataComposable } from '~/composables/own-restaurant/order/initial/time-order/future/own-restaurant-orders-future-initial-data.composable';
 export default defineComponent({
     name: 'OrderFuture',
+    props: {
+        api: {
+            type: Function,
+            default: null,
+        },
+    },
     components: {
         BaseTable,
     },
-    setup() {
+    setup(props) {
         const route = useRoute();
         const order = useOrderStore();
         const toPage = async (toPage: Number) => {
-            await ownRestaurantOrdersFutureInitialDataComposable(toPage);
+            await props.api(toPage);
         };
         const headers = [
             {
@@ -86,7 +93,7 @@ export default defineComponent({
         ];
         onMounted(async () => {
             let page = route.query.restaurant || 1;
-            await ownRestaurantOrdersFutureInitialDataComposable(Number(page));
+            await props.api(Number(page));
         });
         return {
             order,

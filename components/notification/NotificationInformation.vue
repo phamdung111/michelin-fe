@@ -15,6 +15,7 @@ import { defineComponent } from 'vue';
 import { useUserStore } from '~/store/user';
 import { useOrderStore } from '~/store/order';
 import { ownRestaurantCountOrdersInitialComposable } from '~/composables/own-restaurant/order/initial/time-order/today/own-restaurant-count-orders-initial.composable';
+import { managerRestaurantCountOrdersInitialData } from '~/composables/manager/order/time-order/today/manager-restaurant-count-orders-initial-data.composable';
 export default defineComponent({
     name: 'NotificationInformation',
     props: {
@@ -34,10 +35,21 @@ export default defineComponent({
             }
         );
         onMounted(async () => {
-            if (user.id) {
+            if (user.isOwn) {
                 await ownRestaurantCountOrdersInitialComposable();
-                countNotification.value = order.countOrderToday;
+                setInterval(async () => {
+                    await ownRestaurantCountOrdersInitialComposable();
+                    countNotification.value = order.countOrderToday;
+                }, 60000);
             }
+            if (user.isManager) {
+                await managerRestaurantCountOrdersInitialData();
+                setInterval(async () => {
+                    await managerRestaurantCountOrdersInitialData();
+                    countNotification.value = order.countOrderToday;
+                }, 60000);
+            }
+            countNotification.value = order.countOrderToday;
         });
         return {
             countNotification,

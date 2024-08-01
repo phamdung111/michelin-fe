@@ -3,10 +3,11 @@ import { useUiStore } from '~/store/ui';
 import { API_ERROR_CODE } from '~/enum/time-off/api-error-code.enum';
 import { useAuthenticationStore } from '~/store/authentication';
 import LoginForm from '~/components/form/login-form/LoginForm.vue';
-const responseInterceptor = (instance: AxiosInstance) => {
-    const ui = useUiStore();
-    const auth = useAuthenticationStore();
+import { authenticationComposable } from '~/composables/authentication/authentication-composable';
 
+const responseInterceptor = (instance: AxiosInstance) => {
+    const auth = useAuthenticationStore();
+    const ui = useUiStore();
     instance.interceptors.response.use(
         function (response) {
             return response;
@@ -28,21 +29,13 @@ const responseInterceptor = (instance: AxiosInstance) => {
         }
     );
 };
+const requestInterceptor = (instance: AxiosInstance) => {
+    const auth = useAuthenticationStore();
+    const token = auth.access_token;
+    const isLogin = auth.isLogin;
 
-export const http = () => {
-    const config = useRuntimeConfig();
-
-    const api = axios.create({
-        baseURL: config.public.apiBase,
-        // withCredentials: true,
-        // withXSRFToken: true,
-    });
-
-    api.interceptors.request.use(
-        function (config) {
-            const auth = useAuthenticationStore();
-            const token = auth.access_token;
-            const isLogin = auth.isLogin;
+    instance.interceptors.request.use(
+        async function (config) {
             if (isLogin) {
                 config.headers['Authorization'] = `Bearer ${token}`;
             }
@@ -52,7 +45,15 @@ export const http = () => {
             console.log(error);
         }
     );
+};
+export const http = () => {
+    const config = useRuntimeConfig();
+    const api = axios.create({
+        baseURL: config.public.apiBase,
+        // withCredentials: true,
+        // withXSRFToken: true,
+    });
+    requestInterceptor(api);
     responseInterceptor(api);
-
     return api;
 };

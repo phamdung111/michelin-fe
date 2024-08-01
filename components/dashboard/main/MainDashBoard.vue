@@ -18,6 +18,7 @@ import SearchForm from '~/components/form/SearchForm.vue';
 import DashBoardLatestNews from './section/DashBoardLatestNews.vue';
 import DashBoardRestaurant from './section/DashBoardRestaurant.vue';
 import DashboardBanner from '../banner/DashboardBanner.vue';
+import { useUiStore } from '~/store/ui';
 export default defineComponent({
     name: 'MainDashBoard',
     components: {
@@ -30,7 +31,10 @@ export default defineComponent({
         MichelinStar,
     },
     setup() {
-        return {};
+        const ui = useUiStore();
+        return {
+            ui,
+        };
     },
 });
 </script>

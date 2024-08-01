@@ -1,7 +1,7 @@
 <template>
     <div :class="size <= 35 ? 'text-[16px]' : 'text-[20px]'" class="cursor-pointer">
         <button
-            :class="disable ? `h-[${size}px] bg-primaryWhite text-primaryColor3` : `h-[${size}px] text-primaryWhite bg-${bgColor}`"
+            :class="disable ? `h-[${size}px] bg-primaryWhite hover:cursor-not-allowed text-primaryColor3` : `h-[${size}px] text-primaryWhite bg-${bgColor}`"
             :disabled="disable"
             class="px-2 font-medium w-full rounded-md border">
             {{ content }}

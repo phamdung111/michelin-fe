@@ -1,5 +1,5 @@
 <template>
-    <div @click.prevent="isLike ? unLike() : like()">
+    <div @click.prevent="isLike ? unLike() : like()" class="hover:cursor-pointer">
         <Icon v-if="!isLike" :size="String(size)" name="material-symbols-light:favorite-outline-rounded"></Icon>
         <Icon v-else class="text-primaryOrange" :size="String(size)" name="material-symbols-light:favorite"></Icon>
     </div>

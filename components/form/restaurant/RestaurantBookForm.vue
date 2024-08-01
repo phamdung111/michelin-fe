@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed w-screen h-screen bg-primaryBgBlur top-0 right-0 z-notification flex justify-center items-center">
+    <div v-if="restaurant.restaurantSelected" class="fixed w-screen h-screen bg-primaryBgBlur top-0 right-0 z-notification flex justify-center items-center">
         <div class="mx-[10px] max-w-[700px] w-full bg-primaryWhite relative px-4 rounded-lg pb-[40px]">
             <div class="absolute top-0 right-0">
                 <Icon @click.prevent="closeFormBooking()" name="mdi:close" class="text-primaryColor3 text-[25px] hover:cursor-pointer" />

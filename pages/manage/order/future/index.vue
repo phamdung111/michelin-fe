@@ -2,31 +2,30 @@
     <nuxt-layout name="layout-menu">
         <template #title> Order </template>
         <template #menu>
-            <OwnOrderMenu />
+            <ManagerMenuOrder />
         </template>
         <template #content>
-            <OrderFuture :api="ownRestaurantOrdersFutureInitialDataComposable" />
+            <OrderFuture :api="managerRestaurantOrdersFutureInitialDataComposable" />
         </template>
     </nuxt-layout>
 </template>
 
 <script lang="ts">
 definePageMeta({
-    middleware: 'own',
+    middleware: 'manager',
 });
 import { defineComponent } from 'vue';
-import OwnOrderMenu from '~/components/own/order/menu/OwnOrderMenu.vue';
+import ManagerMenuOrder from '~/components/manager/menu/ManagerMenuOrder.vue';
 import OrderFuture from '~/components/order/OrderFuture.vue';
-import { ownRestaurantOrdersFutureInitialDataComposable } from '~/composables/own-restaurant/order/initial/time-order/future/own-restaurant-orders-future-initial-data.composable';
+import { managerRestaurantOrdersFutureInitialDataComposable } from '~/composables/manager/order/time-order/future/manager-restaurant-orders-today-initial-data.composable';
 export default defineComponent({
     components: {
-        OwnOrderMenu,
         OrderFuture,
+        ManagerMenuOrder,
     },
-
     setup() {
         return {
-            ownRestaurantOrdersFutureInitialDataComposable,
+            managerRestaurantOrdersFutureInitialDataComposable,
         };
     },
 });

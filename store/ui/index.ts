@@ -10,6 +10,7 @@ export const useUiStore = defineStore('ui', {
     state: (): uiStoreStateInterface => {
         return {
             isOpenMenu: false,
+            isLoading: false,
             popup: {
                 isOpenPopup: false,
                 component: '',

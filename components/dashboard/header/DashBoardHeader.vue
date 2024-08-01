@@ -15,10 +15,12 @@
                         </div>
                     </div>
                     <div class="flex gap-3 items-center px-4 py-2 lg:border-[1px] border-primaryColor1 rounded-lg h-[58px]">
-                        <div @click.prevent="toggleMenu()">
-                            <NotificationInformation />
+                        <div class="flex gap-1 relative">
+                            <div @click.prevent="toggleMenu()" class="absolute -bottom-2.5 -right-2.5">
+                                <NotificationInformation :size="30" />
+                            </div>
+                            <UserAvatar @click="navigateTo('/account')" :size="40" />
                         </div>
-                        <UserAvatar @click="navigateTo('/account')" :size="40" />
                         <Icon
                             @click.prevent="toggleMenu()"
                             class="text-primaryColor"
@@ -42,7 +44,6 @@ import NotificationInformation from '~/components/notification/NotificationInfor
 import UserAvatar from './UserAvatar.vue';
 import { useUiStore } from '~/store/ui';
 import { useAuthenticationStore } from '~/store/authentication';
-import { authenticationComposable } from '~/composables/authentication/authentication-composable';
 
 export default defineComponent({
     name: 'DashBoardHeader',
@@ -58,11 +59,6 @@ export default defineComponent({
         const toggleMenu = () => {
             ui.isOpenMenu = !ui.isOpenMenu;
         };
-        onBeforeMount(async () => {
-            if (auth.access_token) {
-                await authenticationComposable();
-            }
-        });
         const goTo = (route: string) => {
             navigateTo(`/${route}`);
         };
