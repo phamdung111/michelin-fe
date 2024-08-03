@@ -11,18 +11,14 @@
                 <slot name="content" />
             </div>
         </div>
-        <NotificationDeleteItem />
     </nuxt-layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import NotificationDeleteItem from '~/components/notification/NotificationDeleteItem.vue';
 export default defineComponent({
     name: 'LayoutMenu',
-    components: {
-        NotificationDeleteItem,
-    },
+    components: {},
     setup() {
         return {};
     },
