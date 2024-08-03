@@ -19,6 +19,7 @@
         </div>
         <DashBoardFooter />
         <NotificationOverlay />
+        <NotificationDeleteItem />
     </div>
 </template>
 
@@ -26,6 +27,8 @@
 import { defineComponent } from 'vue';
 import DashBoardHeader from '~/components/dashboard/header/DashBoardHeader.vue';
 import DashBoardFooter from '~/components/dashboard/footer/DashBoardFooter.vue';
+import NotificationDeleteItem from '~/components/notification/NotificationDeleteItem.vue';
+
 import MenuMobile from '~/components/menu/MenuMobile.vue';
 import MenuDesktop from '~/components/menu/MenuDesktop.vue';
 import NotificationOverlay from '~/components/notification/NotificationOverlay.vue';
@@ -38,6 +41,7 @@ export default defineComponent({
         MenuMobile,
         MenuDesktop,
         NotificationOverlay,
+        NotificationDeleteItem,
     },
     setup() {
         const ui = useUiStore();
