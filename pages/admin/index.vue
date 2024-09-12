@@ -12,11 +12,8 @@ definePageMeta({
     middleware: ['admin'],
 });
 import { defineComponent } from 'vue';
-import NotificationOverlay from '~/components/notification/NotificationOverlay.vue';
 export default defineComponent({
-    components: {
-        NotificationOverlay,
-    },
+    components: {},
     setup() {
         return {};
     },

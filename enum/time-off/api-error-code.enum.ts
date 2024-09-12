@@ -1,4 +1,4 @@
 export enum API_ERROR_CODE {
-    UNAUTHENTICATED = 'Unauthenticated.',
-    ERROR_SERVER = 'SERVER_ISSUE',
+    UNAUTHENTICATED = 401,
+    ERROR_SERVER = 500,
 }

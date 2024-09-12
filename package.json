@@ -17,6 +17,7 @@
     "nuxt-icons": "^3.2.1",
     "nuxt-svgo": "^4.0.1",
     "pinia": "^2.1.7",
+    "pusher-js": "^8.4.0-rc2",
     "vue": "^3.4.31",
     "vue-advanced-cropper": "^2.8.9",
     "yup": "^1.4.0"

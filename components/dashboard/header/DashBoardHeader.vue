@@ -15,11 +15,11 @@
                         </div>
                     </div>
                     <div class="flex gap-3 items-center px-4 py-2 lg:border-[1px] border-primaryColor1 rounded-lg h-[58px]">
-                        <div class="flex gap-1 relative">
+                        <div v-if="user.id" class="flex gap-1 relative">
                             <div @click.prevent="toggleMenu()" class="absolute -bottom-2.5 -right-2.5">
                                 <NotificationInformation :size="30" />
                             </div>
-                            <UserAvatar @click="navigateTo('/account')" :size="40" />
+                            <UserAvatar v-if="user" @click="navigateTo('/account')" :size="40" />
                         </div>
                         <Icon
                             @click.prevent="toggleMenu()"
@@ -44,7 +44,8 @@ import NotificationInformation from '~/components/notification/NotificationInfor
 import UserAvatar from './UserAvatar.vue';
 import { useUiStore } from '~/store/ui';
 import { useAuthenticationStore } from '~/store/authentication';
-
+import { useUserStore } from '~/store/user';
+import { authenticationComposable } from '~/composables/authentication/authentication-composable';
 export default defineComponent({
     name: 'DashBoardHeader',
     components: {
@@ -55,6 +56,7 @@ export default defineComponent({
     },
     setup() {
         const ui = useUiStore();
+        const user = useUserStore();
         const auth = useAuthenticationStore();
         const toggleMenu = () => {
             ui.isOpenMenu = !ui.isOpenMenu;
@@ -63,8 +65,21 @@ export default defineComponent({
             navigateTo(`/${route}`);
         };
 
+        if (typeof window !== 'undefined') {
+            window.addEventListener('storage', async (event) => {
+                if (event.key === 'auth') {
+                    const authentication = JSON.parse(event.newValue!);
+                    auth.setAuthentication(authentication);
+                    await authenticationComposable();
+                    if (user.id) {
+                        ui.closePopup();
+                    }
+                }
+            });
+        }
         return {
             ui,
+            user,
             toggleMenu,
             goTo,
         };

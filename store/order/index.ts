@@ -21,7 +21,7 @@ export const useOrderStore = defineStore('order', {
             this.last_page = orders.last_page;
         },
         setCountOrdersToday(number: number) {
-            this.countOrderToday = number;
+            if (Number.isInteger(number)) this.countOrderToday = number;
         },
     },
 });

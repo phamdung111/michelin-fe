@@ -4,7 +4,7 @@ import { http } from '~/utils/http/http';
 export const updateAccountService = Object.freeze({
     updateInfo: async (payload: AccountRequestInterface) => {
         try {
-            const response = await http().post('/api/auth/update-profile', payload);
+            const response = await http().post('/api/update-profile', payload);
             return response.data;
         } catch (error: any) {
             return error.response.data;

@@ -15,10 +15,23 @@
                     <div class="mt-[40px] mb-[24px]" @click="login()">
                         <BaseButton content="Sign In" bg-color="primaryGreen" />
                     </div>
+                    <div class="pt-2 border-t-[2px]">
+                        <p class="text-center">Login with</p>
+                        <div class="flex gap-[20px] mt-[10px] justify-center">
+                            <button @click.prevent="loginWithSocial('github')">
+                                <Icon name="mdi:github" size="35" />
+                            </button>
+                            <button @click.prevent="loginWithSocial('google')">
+                                <Icon name="logos:google-icon" size="30" />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <LoginWithGithub v-if="loginWith === 'github'" :login-with="loginWith" />
+    <LoginWithGoogle v-if="loginWith === 'google'" :login-with="loginWith" />
 </template>
 
 <script lang="ts">
@@ -28,13 +41,27 @@ import BaseButton from '~/components/button/BaseButton.vue';
 import { loginFormData as form } from '~/composables/login/login-form-data.composable';
 import { loginDataSubmitterComposable } from '~/composables/login/login-data-submitter.composable';
 import { loginValidateComposable as validate } from '~/composables/login/login-validate.composable';
+import LoginWithGithub from './login-oauth/LoginWithGithub.vue';
+import LoginWithGoogle from './login-oauth/LoginWithGoogle.vue';
 export default defineComponent({
     name: 'LoginForm',
     components: {
         BaseButton,
+        LoginWithGithub,
+        LoginWithGoogle,
     },
     setup() {
         const ui = useUiStore();
+        const loginWith = ref('');
+        const loginWithSocial = (social: string) => {
+            if (loginWith.value !== '') {
+                loginWith.value = '';
+            }
+            setTimeout(() => {
+                loginWith.value = social;
+            }, 500);
+        };
+
         const closePopupLogin = () => {
             ui.closePopup();
         };
@@ -44,8 +71,10 @@ export default defineComponent({
         return {
             form,
             validate,
+            loginWith,
             closePopupLogin,
             login,
+            loginWithSocial,
         };
     },
 });

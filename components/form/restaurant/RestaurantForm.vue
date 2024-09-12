@@ -48,7 +48,10 @@
                                 </div>
                             </div>
                         </div>
-                        <input v-model="totalRooms" type="number" min="1" class="px-2 h-[48px] border w-full rounded-lg focus:outline-none mb-4" placeholder="Total rooms" />
+                        <div class="mt-2">
+                            <span>Total rooms</span>
+                            <input v-model="totalRooms" type="number" min="1" class="px-2 h-[48px] border w-full rounded-lg focus:outline-none mb-4" placeholder="Total rooms" />
+                        </div>
                     </div>
                     <div class="mt-2">
                         <InputValidation :isFailed="validate.avatar.isFailed" :content="validate.avatar.message" />
