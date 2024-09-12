@@ -32,7 +32,7 @@ export default defineComponent({
             const top = window.screenY + (window.innerHeight - height) / 2;
 
             const popup = window.open(
-                `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=user:email`,
+                `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=user:email&login`,
                 'GitHubLoginPopup',
                 `width=${width},height=${height},top=${top},left=${left}`
             );

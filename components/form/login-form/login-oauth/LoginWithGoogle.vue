@@ -22,7 +22,6 @@ export default defineComponent({
         const openPopup = () => {
             isProcessing.value = true;
             popupOpened.value = true;
-
             const clientId = googleConfig().clientId;
             const redirectUri = googleConfig().redirectUri;
             const width = 600;
@@ -44,32 +43,7 @@ export default defineComponent({
                 `width=${width},height=${height},top=${top},left=${left}`
             );
 
-            // if (popup) {
-            //     const interval = setInterval(() => {
-            //         if (popup.closed) {
-            //             clearInterval(interval);
-            //             handlePopupClosed();
-            //         }
-            //     }, 1000);
-            // } else {
-            //     console.error('Popup could not be opened. Please make sure popup blockers are disabled.');
-            //     isProcessing.value = false;
-            // }
         };
-
-        // const handlePopupClosed = () => {
-        //     console.log('close popup');
-
-        //     const storedCode = sessionStorage.getItem('githubOAuthCode');
-        //     if (storedCode) {
-        //         sessionStorage.removeItem('googleOAuthCode');
-        //         // Handle the OAuth code (e.g., send it to the server for exchange)
-        //         console.log('OAuth Code:', storedCode);
-        //     }
-        //     isProcessing.value = false;
-        //     popupOpened.value = false;
-        // };
-
         const checkUrlParams = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const code = urlParams.get('code');

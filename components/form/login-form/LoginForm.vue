@@ -15,7 +15,7 @@
                     <div class="mt-[40px] mb-[24px]" @click="login()">
                         <BaseButton content="Sign In" bg-color="primaryGreen" />
                     </div>
-                    <div>
+                    <div class="pt-2 border-t-[2px]">
                         <p class="text-center">Login with</p>
                         <div class="flex gap-[20px] mt-[10px] justify-center">
                             <button @click.prevent="loginWithSocial('github')">
