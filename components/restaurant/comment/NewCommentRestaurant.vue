@@ -1,9 +1,9 @@
 <template>
-    <div @keyup.enter="comment()">
+    <div @keyup.enter.prevent="comment()">
         <div class="flex gap-2 mt-1">
             <input v-model="newComment" type="text" placeholder="New comment" class="h-[48px] mb-2 border w-full rounded-lg shadow-lg px-2 focus:outline-none" />
-            <div class="w-[140px]" @click.prevent="comment()">
-                <BaseButton content="comment" :disable="!isComment" :bg-color="isComment ? 'primaryGreen' : 'primaryOrange'" />
+            <div @click.prevent="comment()" class="w-[140px]">
+                <BaseButton class="shadow-lg" content="comment" :disable="!isComment" :bg-color="isComment ? 'primaryGreen' : 'primaryOrange'" />
             </div>
         </div>
     </div>

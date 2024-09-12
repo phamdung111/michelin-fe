@@ -4,8 +4,10 @@ import type { UserStoreStateInterface } from '~/interface/store/user/user-store-
 export const authenticationService = Object.freeze({
     getInformationUser: async (): Promise<UserStoreStateInterface | undefined> => {
         try {
-            const response = await http().post('/api/auth/profile');
+            const response = await http().post('/api/profile');
             return response.data;
-        } catch (error) {}
+        } catch (error: any) {
+            return error.response.data;
+        }
     },
 });

@@ -98,7 +98,7 @@ export default defineComponent({
     setup() {
         const ui = useUiStore();
         const route = useRoute();
-        const isLoading = ref(true);
+        const isLoading = ref(false);
         const restaurant = useRestaurantStore();
         const likeRestaurant = () => {
             restaurant.restaurantSelected.restaurant!.countLike += 1;
@@ -110,6 +110,7 @@ export default defineComponent({
             ui.openPopupData(RestaurantBookForm, restaurant.restaurantSelected.restaurant);
         };
         onBeforeMount(async () => {
+            isLoading.value = true;
             await restaurantInitialDataComposable(Number(route.params.id));
             isLoading.value = false;
         });

@@ -145,7 +145,7 @@ export default defineComponent({
         const dateToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
         const dateOrder = ref();
         const isSelectedTableOrRoom = ref(false);
-        const restaurantSelected = restaurant.restaurantSelected;
+        const restaurantSelected = restaurant.restaurantSelected.restaurant;
         const tableSelected = ref<Record<string, string | number> | null>();
         const roomSelected = ref<Record<string, string | number> | null>();
         const hourOrder = ref('');

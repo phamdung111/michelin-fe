@@ -22,6 +22,12 @@ export default defineNuxtConfig({
         apiSecret: '',
         public: {
             apiBase: '',
+            githubClientId: '',
+            githubClientSecret: '',
+            githubClientRedirectUri: '',
+            googleClientId: '',
+            googleClientRedirectUri: '',
+            googleClientSecret: '',
         },
     },
     icon: {
@@ -48,5 +54,4 @@ export default defineNuxtConfig({
             setMiddleware(pages);
         },
     },
-    
 });

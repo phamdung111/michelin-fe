@@ -7,16 +7,13 @@
                     <div @click.prevent="openPopupRegister" class="pb-[6px] hover:cursor-pointer">Register</div>
                 </div>
                 <div v-else>
-                    <div @click.prevent="goTo('/account')" class="pb-[6px] hover:cursor-pointer">My Account</div>
+                    <div @click.prevent="goTo('account')" class="pb-[6px] hover:cursor-pointer">My Account</div>
                     <div @click.prevent="logout()" class="pb-[6px] hover:cursor-pointer">Logout</div>
                 </div>
             </div>
             <div class="grid gap-2 py-5 border-y border-primaryColor3">
                 <div @click.prevent="goTo(`${ROUTE.APP.RESTAURANTS}`)" class="hover:cursor-pointer">Restaurant</div>
                 <div @click.prevent="goTo('/favorite')" class="hover:cursor-pointer">Favorite</div>
-                <div v-if="user.isOwn" @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.MY_RESTAURANT}`)" class="hover:cursor-pointer">
-                    <span> {{ MENU.OWN_RESTAURANT.MY_RESTAURANT }} </span>
-                </div>
                 <div v-if="user.isOwn" class="relative hover:cursor-pointer">
                     <div class="flex relative">
                         <div>
@@ -73,8 +70,8 @@ export default defineComponent({
             ui.openPopup(RegisterForm);
             ui.closeMenu();
         };
-        const goTo = (router: string) => {
-            navigateTo(`/${router}`);
+        const goTo = (route: String) => {
+            navigateTo(`/${route}`);
             ui.closeMenu();
         };
         const logout = async () => {

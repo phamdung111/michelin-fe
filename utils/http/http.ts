@@ -1,24 +1,68 @@
-import axios, { type AxiosInstance } from 'axios';
+import axios from 'axios';
 import { useUiStore } from '~/store/ui';
-import { API_ERROR_CODE } from '~/enum/time-off/api-error-code.enum';
 import { useAuthenticationStore } from '~/store/authentication';
 import LoginForm from '~/components/form/login-form/LoginForm.vue';
-import { authenticationComposable } from '~/composables/authentication/authentication-composable';
 
-const responseInterceptor = (instance: AxiosInstance) => {
+export const http = () => {
+    const config = useRuntimeConfig();
     const auth = useAuthenticationStore();
+    const accessToken = auth.access_token;
+    const isLogin = auth.isLogin;
     const ui = useUiStore();
-    instance.interceptors.response.use(
-        function (response) {
-            return response;
+
+    const axiosInstance = axios.create({
+        baseURL: config.public.apiBase,
+        // withCredentials: true,
+        // withXSRFToken: true,
+    });
+
+    axiosInstance.interceptors.request.use(
+        async function (request) {
+            if (isLogin) {
+                request.headers['Authorization'] = `Bearer ${accessToken}`;
+                request.headers['Login-Source'] = auth.login_source;
+            }
+            return request;
         },
         function (error) {
+            return Promise.reject(error);
+        }
+    );
+
+    axiosInstance.interceptors.response.use(
+        (response) => response,
+        async (error) => {
             console.log(error.response);
-            const errorCode = error.response.data.message;
+            const errorCode = error.response.status;
+            const originalRequest = error.config;
             switch (errorCode) {
-                case API_ERROR_CODE.ERROR_SERVER:
+                case errorCode >= 500 && errorCode < 600:
                     ui.openNotification({ message: 'Something wrong, please try again later.', status: 'errors' });
-                case API_ERROR_CODE.UNAUTHENTICATED:
+                case 401:
+                    if (!originalRequest._entry) {
+                        originalRequest._entry = true;
+                        try {
+                            const response = await axios.post(
+                                `http://localhost:/api/refresh-token`,
+                                {},
+                                {
+                                    headers: {
+                                        Authorization: `Bearer ${auth.refresh_token}`,
+                                        'Login-Source': auth.login_source,
+                                    },
+                                }
+                            );
+                            const newToken = response.data;
+                            auth.setAccessToken(newToken);
+                            axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+                            originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+                            return axios(originalRequest);
+                        } catch (refreshError) {
+                            auth.removeAuthentication();
+                            ui.openPopup(LoginForm);
+                            return Promise.reject(refreshError);
+                        }
+                    }
                     ui.openPopup(LoginForm);
                     break;
                 default:
@@ -28,32 +72,5 @@ const responseInterceptor = (instance: AxiosInstance) => {
             return Promise.reject(error);
         }
     );
-};
-const requestInterceptor = (instance: AxiosInstance) => {
-    const auth = useAuthenticationStore();
-    const token = auth.access_token;
-    const isLogin = auth.isLogin;
-
-    instance.interceptors.request.use(
-        async function (config) {
-            if (isLogin) {
-                config.headers['Authorization'] = `Bearer ${token}`;
-            }
-            return config;
-        },
-        function (error) {
-            console.log(error);
-        }
-    );
-};
-export const http = () => {
-    const config = useRuntimeConfig();
-    const api = axios.create({
-        baseURL: config.public.apiBase,
-        // withCredentials: true,
-        // withXSRFToken: true,
-    });
-    requestInterceptor(api);
-    responseInterceptor(api);
-    return api;
+    return axiosInstance;
 };

@@ -13,6 +13,7 @@
 <script lang="ts">
 definePageMeta({
     middleware: 'own',
+    layout: false,
 });
 import { defineComponent } from 'vue';
 import OwnOrderMenu from '~/components/own/order/menu/OwnOrderMenu.vue';

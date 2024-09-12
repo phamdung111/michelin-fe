@@ -77,5 +77,6 @@ export const useUiStore = defineStore('ui', {
             this.notFound.item = notFound.item;
             this.notFound.message = notFound.message;
         },
+
     },
 });
