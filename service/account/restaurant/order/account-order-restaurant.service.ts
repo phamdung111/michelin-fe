@@ -4,7 +4,7 @@ import { http } from '~/utils/http/http';
 export const accountOrderRestaurantService = Object.freeze({
     ordering: async (payload: OrderRequestInterface) => {
         try {
-            const response = await http().post('api/auth/order', payload);
+            const response = await http().post('api/order', payload);
             return response.data;
         } catch (errors: any) {
             return errors.response.date;

@@ -14,18 +14,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex gap-3 items-center px-4 py-2 lg:border-[1px] border-primaryColor1 rounded-lg h-[58px]">
-                        <div v-if="user.id" class="flex gap-1 relative">
-                            <div @click.prevent="toggleMenu()" class="absolute -bottom-2.5 -right-2.5">
-                                <NotificationInformation :size="30" />
+
+                    <div class="flex gap-3 items-center justify-center px-4 py-2 border-[1px] border-primaryColor1 rounded-lg h-[58px]">
+                        <div v-if="user.id" class="flex gap-2 relative items-center">
+                            <div class="relative w-[40px] h-[40px] flex justify-center items-center rounded-full hover:bg-primaryColor6 border">
+                                <Icon name="material-symbols:notifications-outline" size="30" class="text-primaryColor3 opacity-50"></Icon>
+                                <div class="absolute -bottom-5 -right-3">
+                                    <NotificationCount :size="30" />
+                                </div>
+                                <div class="absolute top-10 right-0">
+                                    <NotificationInformation />
+                                </div>
                             </div>
-                            <UserAvatar v-if="user" @click="navigateTo('/account')" :size="40" />
+                            <UserAvatar v-if="user" @click.prevent="toggleMenu()" :size="40" />
                         </div>
-                        <Icon
-                            @click.prevent="toggleMenu()"
-                            class="text-primaryColor"
-                            size="22"
-                            name="streamline:interface-setting-menu-1-button-parallel-horizontal-lines-menu-navigation-three-hamburger" />
+                        <div class="hidden lg:block">
+                            <Icon
+                                @click.prevent="toggleMenu()"
+                                class="text-primaryColor hidden"
+                                size="22"
+                                name="streamline:interface-setting-menu-1-button-parallel-horizontal-lines-menu-navigation-three-hamburger" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,7 +48,8 @@
 import { defineComponent } from 'vue';
 import LogoIcon from '~/assets/icon/michelin-guide-logo-dark.svg';
 import AppOverlay from '~/components/overlay/AppOverlay.vue';
-import NotificationInformation from '~/components/notification/NotificationInformation.vue';
+import NotificationCount from '~/components/notification/NotificationCount.vue';
+import NotificationInformation from './notification/NotificationInformation.vue';
 
 import UserAvatar from './UserAvatar.vue';
 import { useUiStore } from '~/store/ui';
@@ -52,12 +62,14 @@ export default defineComponent({
         UserAvatar,
         AppOverlay,
         LogoIcon,
+        NotificationCount,
         NotificationInformation,
     },
     setup() {
         const ui = useUiStore();
         const user = useUserStore();
         const auth = useAuthenticationStore();
+
         const toggleMenu = () => {
             ui.isOpenMenu = !ui.isOpenMenu;
         };

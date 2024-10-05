@@ -28,6 +28,8 @@ export default defineNuxtConfig({
             googleClientId: '',
             googleClientRedirectUri: '',
             googleClientSecret: '',
+            pusherCluster: '',
+            pusherKey: '',
         },
     },
     icon: {
@@ -54,4 +56,5 @@ export default defineNuxtConfig({
             setMiddleware(pages);
         },
     },
+    plugins: ['~/plugins/pusher'],
 });

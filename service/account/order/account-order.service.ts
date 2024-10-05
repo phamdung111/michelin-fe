@@ -5,7 +5,7 @@ import { http } from '~/utils/http/http';
 export const accountOrderService = Object.freeze({
     orders: async (page: number): Promise<AccountOrdersResponseInterface> => {
         try {
-            const response = await http().post('api/auth/orders-user', {
+            const response = await http().post('api/orders-user', {
                 page: page,
             });
             return response.data;
@@ -15,7 +15,7 @@ export const accountOrderService = Object.freeze({
     },
     cancelOrder: async (orderId: number) => {
         try {
-            const response = await http().post('api/auth/user-cancel-order', {
+            const response = await http().post('api/user-cancel-order', {
                 orderId: orderId,
             });
             return response.data;
