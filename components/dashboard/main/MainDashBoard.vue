@@ -11,9 +11,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MichelinStar from '~~/assets/icon/michelin-star.svg';
-import AppStoreIcon from '~~/assets/icon/app-store-icon.svg';
-import ChPlayStoreIcon from '~~/assets/icon/google-playstore-en.svg';
 import SearchForm from '~/components/form/SearchForm.vue';
 import DashBoardLatestNews from './section/DashBoardLatestNews.vue';
 import DashBoardRestaurant from './section/DashBoardRestaurant.vue';
@@ -26,9 +23,6 @@ export default defineComponent({
         DashBoardLatestNews,
         DashBoardRestaurant,
         DashboardBanner,
-        AppStoreIcon,
-        ChPlayStoreIcon,
-        MichelinStar,
     },
     setup() {
         const ui = useUiStore();

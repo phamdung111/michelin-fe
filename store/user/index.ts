@@ -15,6 +15,7 @@ export const useUserStore = defineStore('user', {
             role: '',
             phone: '',
             description: '',
+            channels: [],
             restaurants: {
                 items: [],
                 current_page: 0,
@@ -53,6 +54,7 @@ export const useUserStore = defineStore('user', {
             this.role = user.role;
             this.phone = user.phone;
             this.description = user.description;
+            this.channels = user.channels;
         },
         resetUser() {
             this.id = 0;

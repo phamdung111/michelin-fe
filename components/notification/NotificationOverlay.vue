@@ -52,7 +52,7 @@ export default defineComponent({
 }
 
 .notification {
-    animation: moveNotification 2s ease-in-out;
+    animation: moveNotification 3s ease-in-out;
     animation-fill-mode: forwards;
     animation-delay: 0s;
     animation-iteration-count: 1;

@@ -55,7 +55,7 @@ import { defineComponent } from 'vue';
 import { useUiStore } from '~/store/ui';
 import LoginForm from '../form/login-form/LoginForm.vue';
 import RegisterForm from '../form/register-form/RegisterForm.vue';
-import NotificationCount from '../notification/NotificationCount.vue';
+import NotificationCount from '../dashboard/header/notification/NotificationCount.vue';
 import { useUserStore } from '~/store/user';
 import { logoutSubmitter } from '~/composables/logout/logout-submitter.composable';
 import { MENU } from '~/constant/menu/menu.constant';

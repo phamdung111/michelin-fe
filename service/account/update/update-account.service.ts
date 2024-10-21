@@ -12,7 +12,7 @@ export const updateAccountService = Object.freeze({
     },
     updateAvatar: async (payload: FormData) => {
         try {
-            const response = await http().post('api/auth/update-avatar', payload);
+            const response = await http().post('api/update-avatar', payload);
             return response.data;
         } catch (error) {}
     },

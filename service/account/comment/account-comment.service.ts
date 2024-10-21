@@ -4,7 +4,7 @@ import { http } from '~/utils/http/http';
 export const accountCommentService = Object.freeze({
     comment: async (payload: AccountCommentRequestInterface): Promise<number> => {
         try {
-            const response = await http().post('api/auth/comment', payload);
+            const response = await http().post('api/comment', payload);
             return response.data;
         } catch (error: any) {
             return error.response.data;

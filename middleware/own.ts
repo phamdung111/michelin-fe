@@ -7,7 +7,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     const ui = useUiStore();
     const auth = useAuthenticationStore();
     const user = useUserStore();
-    console.log(response);
 
     if (response?.role! !== 'own') {
         return navigateTo('/');

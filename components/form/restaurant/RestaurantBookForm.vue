@@ -39,7 +39,7 @@
                 <div>
                     <div class="mt-2">
                         <h6>Table normal</h6>
-                        <div class="grid grid-cols-10 border p-2">
+                        <div class="grid grid-cols-10 border p-2 gap-2">
                             <div
                                 v-for="table in tableNormal"
                                 :key="table.id"
