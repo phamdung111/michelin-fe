@@ -4,20 +4,26 @@ import type { NuxtPage } from 'nuxt/schema';
 export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: ['nuxt-svgo', 'nuxt-icon', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt', '@nuxt/ui'],
+
     svgo: {
         defaultImport: 'component',
     },
+
     css: ['~/assets/css/main.css'],
+
     postcss: {
         plugins: {
             tailwindcss: {},
             autoprefixer: {},
         },
     },
+
     imports: {
         autoImport: true,
     },
+
     pages: true,
+
     runtimeConfig: {
         apiSecret: '',
         public: {
@@ -28,16 +34,20 @@ export default defineNuxtConfig({
             googleClientId: '',
             googleClientRedirectUri: '',
             googleClientSecret: '',
+            pusherCluster: '',
+            pusherKey: '',
         },
     },
+
     icon: {
         customCollections: [
             {
-                prefix: 'my-icon',
-                dir: './assets/icon',
+                prefix: 'icons',
+                dir: './assets/icons',
             },
         ],
     },
+
     hooks: {
         'pages:extend'(pages) {
             function setMiddleware(pages: NuxtPage[]) {
@@ -54,4 +64,7 @@ export default defineNuxtConfig({
             setMiddleware(pages);
         },
     },
+
+    plugins: ['~/plugins/pusher'],
+    compatibilityDate: '2024-10-08',
 });

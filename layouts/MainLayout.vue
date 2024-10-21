@@ -2,7 +2,7 @@
     <div>
         <DashBoardHeader>
             <template #menu>
-                <div v-if="ui.isOpenMenu">
+                <div v-if="ui.menuOpen === 'main-menu'">
                     <div class="lg:hidden">
                         <MenuMobile />
                     </div>

@@ -1,4 +1,3 @@
-import { avatar } from '@nuxt/ui';
 export interface RestaurantResponseInterface {
     id: number;
     name: string;

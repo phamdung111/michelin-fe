@@ -3,7 +3,7 @@ import { http } from '~/utils/http/http';
 export const accountLikeRestaurantService = Object.freeze({
     checkLike: async (restaurantId: number): Promise<boolean> => {
         try {
-            const response = await http().post('/api/auth/check', {
+            const response = await http().post('/api/check', {
                 restaurantId: restaurantId,
             });
             return response.data;
@@ -13,7 +13,7 @@ export const accountLikeRestaurantService = Object.freeze({
     },
     like: async (restaurantId: number): Promise<boolean> => {
         try {
-            const response = await http().post('/api/auth/like', {
+            const response = await http().post('/api/like', {
                 restaurantId: restaurantId,
             });
             return response.data;
@@ -23,7 +23,7 @@ export const accountLikeRestaurantService = Object.freeze({
     },
     unLike: async (restaurantId: number): Promise<boolean> => {
         try {
-            const response = await http().post('/api/auth/un-like', {
+            const response = await http().post('/api/un-like', {
                 restaurantId: restaurantId,
             });
             return response.data;

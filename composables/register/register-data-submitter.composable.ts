@@ -12,14 +12,13 @@ export const registerDataSubmitterComposable = async () => {
     const status = await registerValidationRequestComposable();
     if (status) {
         const response = await registerService.register(registerRequestMapper());
-
         if (response.errors) {
             for (let key in response.errors) {
                 registerValidateComposable[key as keyof RegisterValidateInterFace].isFailed = true;
                 registerValidateComposable[key as keyof RegisterValidateInterFace].message = response.errors[key][0];
             }
         } else {
-            auth.setAuthentication(response.original);
+            auth.setAuthentication(response);
             await authenticationComposable();
             ui.closePopup();
         }

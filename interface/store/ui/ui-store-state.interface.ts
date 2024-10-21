@@ -1,7 +1,7 @@
 import type { NotificationDeleteInterface } from '~/interface/notification/notification-delete.interface';
 
 export interface uiStoreStateInterface {
-    isOpenMenu: boolean;
+    menuOpen: string;
     isLoading: boolean;
     popup: {
         isOpenPopup: boolean;

@@ -14,14 +14,14 @@
                         </div>
                         <div class="px-4 flex items-center">
                             <div>
-                                <MichelinStar class="w-[36px]"></MichelinStar>
+                                <!-- <MichelinStar class="w-[36px]"></MichelinStar> -->
                                 <h2 class="text-[16px] md:text-[24px] font-medium">Use the app to find the best restaurants and hotels everywhere</h2>
                             </div>
                         </div>
                         <div class="px-4">
                             <div class="p-6">
-                                <AppStoreIcon class="w-[150px] px-6 py-3" />
-                                <ChPlayStoreIcon class="w-[150px] px-6 py-3" />
+                                <!-- <AppStoreIcon class="w-[150px] px-6 py-3" />
+                                <ChPlayStoreIcon class="w-[150px] px-6 py-3" /> -->
                             </div>
                         </div>
                     </div>
@@ -106,12 +106,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import YoutubeIcon from '~~/assets/icon/youtube-38.svg';
-import FacebookIcon from '~~/assets/icon/facebook-38.svg';
-import BIBMichelinMan from '~~/assets/icon/bib-michelin-man-footer.svg';
-import MichelinGuideVertical from '~~/assets/icon/Michelin-guide-vertical.svg';
+import YoutubeIcon from '~~/assets/icons/youtube-38.svg';
+import FacebookIcon from '~~/assets/icons/facebook-38.svg';
+import BIBMichelinMan from '~~/assets/icons/bib-michelin-man-footer.svg';
+import MichelinGuideVertical from '~~/assets/icons/Michelin-guide-vertical.svg';
 export default defineComponent({
     name: 'DasDashBoardFooter',
+    props: {},
     components: {
         YoutubeIcon,
         FacebookIcon,
@@ -123,5 +124,3 @@ export default defineComponent({
     },
 });
 </script>
-
-<style scoped></style>

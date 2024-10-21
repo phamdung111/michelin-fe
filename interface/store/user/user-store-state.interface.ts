@@ -11,6 +11,7 @@ export interface UserStoreStateInterface {
     role: string;
     phone: string;
     description: string;
+    channels: string[];
     restaurants: {
         items: RestaurantResponseInterface[];
         current_page: number;

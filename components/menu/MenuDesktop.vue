@@ -21,7 +21,7 @@
                             <Icon @click.prevent="isOpenOwnManager = true" v-if="!isOpenOwnManager" name="material-symbols-light:keyboard-arrow-down" />
                             <Icon @click.prevent="isOpenOwnManager = false" v-else name="material-symbols-light:keyboard-arrow-up-rounded" />
                         </div>
-                        <NotificationInformation v-if="!isOpenOwnManager" class="absolute right-0" />
+                        <NotificationCount v-if="!isOpenOwnManager" class="absolute right-0" />
                     </div>
                     <div v-if="isOpenOwnManager" class="ml-[30px] mt-[6px] transition-transform duration-100 relative">
                         <div @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.MY_RESTAURANT}`)" class="pb-[6px]">
@@ -29,7 +29,7 @@
                         </div>
                         <div @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.ORDERS}`)" class="flex gap-2">
                             <span> {{ MENU.OWN_RESTAURANT.ORDER }} </span>
-                            <NotificationInformation class="absolute right-0" />
+                            <NotificationCount class="absolute right-0" />
                         </div>
                     </div>
                 </div>

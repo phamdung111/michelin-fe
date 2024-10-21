@@ -5,13 +5,12 @@ import { http } from '~/utils/http/http';
 export const orderRestaurantService = Object.freeze({
     countOrderToday: async (): Promise<number> => {
         try {
-            const response = await http().post('api/auth/count-orders-today');
+            const response = await http().post('api/count-orders-today');
             return response.data;
         } catch (errors: any) {
             return errors.response.data;
         }
     },
-
 
     ordersFuture: async (page: Number): Promise<OrdersRestaurantResponseInterface> => {
         try {
@@ -26,7 +25,7 @@ export const orderRestaurantService = Object.freeze({
 
     update: async (payload: RestaurantOrderUpdateStatusInterface): Promise<Boolean> => {
         try {
-            const response = await http().post('api/auth/change-status', payload);
+            const response = await http().post('api/change-status', payload);
             return response.data;
         } catch (errors: any) {
             return errors.response.data;

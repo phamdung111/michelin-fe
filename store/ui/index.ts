@@ -9,7 +9,7 @@ import type { uiStoreStateInterface } from '~/interface/store/ui/ui-store-state.
 export const useUiStore = defineStore('ui', {
     state: (): uiStoreStateInterface => {
         return {
-            isOpenMenu: false,
+            menuOpen: '',
             isLoading: false,
             popup: {
                 isOpenPopup: false,
@@ -35,11 +35,11 @@ export const useUiStore = defineStore('ui', {
     },
 
     actions: {
-        openMenu() {
-            this.isOpenMenu = true;
+        openMenu(menuName: string) {
+            this.menuOpen = menuName;
         },
         closeMenu() {
-            this.isOpenMenu = false;
+            this.menuOpen = '';
         },
         openPopup(component: any) {
             this.popup.isOpenPopup = true;
@@ -77,6 +77,5 @@ export const useUiStore = defineStore('ui', {
             this.notFound.item = notFound.item;
             this.notFound.message = notFound.message;
         },
-
     },
 });

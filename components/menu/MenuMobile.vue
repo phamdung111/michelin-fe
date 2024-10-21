@@ -24,7 +24,7 @@
                         <Icon @click.prevent="isOpenOwnManager = true" v-if="!isOpenOwnManager" name="material-symbols-light:keyboard-arrow-down" />
                         <Icon @click.prevent="isOpenOwnManager = false" v-else name="material-symbols-light:keyboard-arrow-up-rounded" />
                     </div>
-                    <NotificationInformation v-if="!isOpenOwnManager" />
+                    <NotificationCount v-if="!isOpenOwnManager" />
                 </div>
                 <div v-if="isOpenOwnManager" class="ml-[30px] mt-[6px] transition-transform duration-100">
                     <div @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.MY_RESTAURANT}`)">
@@ -32,13 +32,13 @@
                     </div>
                     <div @click.prevent="goTo(`${ROUTE.OWN_RESTAURANT.ORDERS}`)" class="flex gap-2">
                         <span> {{ MENU.OWN_RESTAURANT.ORDER }} </span>
-                        <NotificationInformation />
+                        <NotificationCount />
                     </div>
                 </div>
             </div>
             <div v-if="user.isManager" @click.prevent="goTo(`${ROUTE.MANAGER_RESTAURANT.ORDERS}`)" class="flex gap-2">
                 <span> {{ MENU.MANAGER_RESTAURANT.ORDERS }} </span>
-                <NotificationInformation />
+                <NotificationCount />
             </div>
             <div>
                 <span> Contact us </span>
@@ -55,7 +55,7 @@ import { defineComponent } from 'vue';
 import { useUiStore } from '~/store/ui';
 import LoginForm from '../form/login-form/LoginForm.vue';
 import RegisterForm from '../form/register-form/RegisterForm.vue';
-import NotificationInformation from '../notification/NotificationInformation.vue';
+import NotificationCount from '../dashboard/header/notification/NotificationCount.vue';
 import { useUserStore } from '~/store/user';
 import { logoutSubmitter } from '~/composables/logout/logout-submitter.composable';
 import { MENU } from '~/constant/menu/menu.constant';
@@ -63,7 +63,7 @@ import { ROUTE } from '~/constant/route/route.constant';
 export default defineComponent({
     name: 'MenuMobile',
     components: {
-        NotificationInformation,
+        NotificationCount,
     },
     setup() {
         const user = useUserStore();
